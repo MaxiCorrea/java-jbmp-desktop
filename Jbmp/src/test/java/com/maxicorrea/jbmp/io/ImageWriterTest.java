@@ -23,5 +23,5 @@ public class ImageWriterTest {
     assertTrue(file.exists());
     assertTrue(file.getAbsolutePath().endsWith(".bmp"));
   }
-
+  
 }

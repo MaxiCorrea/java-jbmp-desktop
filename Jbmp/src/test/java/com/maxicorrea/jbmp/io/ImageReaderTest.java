@@ -1,6 +1,6 @@
 package com.maxicorrea.jbmp.io;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import java.io.File;
 import org.junit.Test;
 import com.maxicorrea.jbmp.models.core.Image;
@@ -23,4 +23,11 @@ public class ImageReaderTest {
     assertEquals(expected , actual);
   }
 
+  @Test(expected = BmpInputException.class)
+  public void shouldThrowAnExceptionForANonexistentFile() throws BmpInputException {
+    File file = new File("");
+    ImageReader imageReader = new ImageReader();
+    imageReader.read(file);
+  }
+    
 }
