@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>Jbmp</artifactId>
+	<groupId>com.maxicorrea</groupId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>${project.groupId}.${project.artifactId}</name>
+
+	<properties>
+		<encoding>UTF-8</encoding>
+		<project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>${encoding}</project.reporting.outputEncoding>
+		<project.resources.sourceEncoding>${encoding}</project.resources.sourceEncoding>
+		<jdk.version>1.8</jdk.version>
+		<maven.compiler.version>3.5</maven.compiler.version>
+		<maven.failsafe.version>2.19.1</maven.failsafe.version>
+		<junit.version>4.11</junit.version>
+		<junitparams.version>1.0.2</junitparams.version>
+		<mockito.version>1.0.3</mockito.version>
+	</properties>
+
+	<profiles>
+		<profile>
+			<id>develop</id>
+			<activation>
+				<property>
+					<name>environment.type</name>
+					<value>develop</value>
+				</property>
+			</activation>
+		</profile>
+		<profile>
+			<id>preproduction</id>
+			<activation>
+				<property>
+					<name>environment.type</name>
+					<value>preproduction</value>
+				</property>
+			</activation>
+		</profile>
+		<profile>
+			<id>production</id>
+			<activation>
+				<property>
+					<name>environment.type</name>
+					<value>production</value>
+				</property>
+			</activation>
+		</profile>
+	</profiles>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>pl.pragmatists</groupId>
+			<artifactId>JUnitParams</artifactId>
+			<version>${junitparams.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.testifyproject.mock</groupId>
+			<artifactId>mockito</artifactId>
+			<version>${mockito.version}</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven.compiler.version}</version>
+				<configuration>
+					<source>${jdk.version}</source>
+					<target>${jdk.version}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>${maven.failsafe.version}</version>
+				<configuration>
+					<includes>
+						<include>**/*IT.java</include>
+					</includes>
+				</configuration>
+				<executions>
+					<execution>
+						<id>integration-test</id>
+						<goals>
+							<goal>integration-test</goal>
+						</goals>
+						<configuration>
+							<skip>false</skip>
+						</configuration>
+					</execution>
+					<execution>
+						<id>verify</id>
+						<goals>
+							<goal>verify</goal>
+						</goals>
+						<configuration>
+							<skip>false</skip>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<developers>
+		<developer>
+			<name>Maximiliano Correa</name>
+			<id>Id</id>
+			<email>jmaxicorrea@gmail.com</email>
+			<organization>maxicorrea-github</organization>
+			<roles>
+				<role>Architect</role>
+				<role>Developer</role>
+			</roles>
+		</developer>
+	</developers>
+
+</project>
