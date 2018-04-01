@@ -1,5 +1,7 @@
 package com.maxicorrea.jbmp.models.core;
 
-public class Observer {
+public interface Observer {
+
+  void update(Image image);
 
 }
