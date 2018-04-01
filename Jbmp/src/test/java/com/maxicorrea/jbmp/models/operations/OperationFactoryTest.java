@@ -8,7 +8,7 @@ import com.maxicorrea.jbmp.models.core.Operation;
 public class OperationFactoryTest {
 
   @Test
-  public void deberiaRetornarTodasLasOperaciones() {
+  public void shouldReturnAllOperations() {
     List<Operation> operations = OperationFactory.getAllOperations();
     assertTrue(operations.get(0) instanceof Grayscale);
     assertTrue(operations.get(1) instanceof Horizontal);

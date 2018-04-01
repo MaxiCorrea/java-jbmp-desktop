@@ -9,7 +9,7 @@ import com.maxicorrea.jbmp.models.core.Size;
 public class NegativeTest {
 
   @Test
-  public void deberiaPasarANegativoCadaPixelDeLaImagen() {
+  public void shouldNegativePassEachPixelOfTheImage() {
     Image actualImage = new Image( new Size(2,2));
     actualImage.setPixel(0,0, new Pixel(10,56,65));
     actualImage.setPixel(0,1, new Pixel(20,16,5));

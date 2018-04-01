@@ -8,14 +8,14 @@ import static org.mockito.Mockito.*;
 public class EditorTest {
 
   @Test
-  public void noDeberiaTenerUnaImagenAlCrearse() {
+  public void shouldNotHaveAnImageWhenCreating() {
     Editor editor = new Editor();
     assertNull(editor.getSourceImage());
     assertNull(editor.getEditedImage());
   }
 
   @Test
-  public void deberiaPoderEstablecerLaImagenFuente() {
+  public void shouldBeAbleToEstablishTheSourceImage() {
     Editor editor = new Editor();
     editor.setSourceImage( new Image( new Size(40,40)));
     assertEquals(new Image(new Size(40,40)) , editor.getSourceImage());
@@ -23,7 +23,7 @@ public class EditorTest {
   }
   
   @Test
-  public void deberiaPoderAplicarUnaOperacion() {
+  public void shouldBeAbleToApplyAnOperation() {
     Operation operation = mock(Operation.class);
     Editor editor = new Editor();
     editor.applyOperation(operation);
@@ -32,7 +32,7 @@ public class EditorTest {
   }
  
   @Test
-  public void deberiaPoderNotificarASuObservador() {
+  public void shouldBeAbleToNotifyHisObserver() {
     Observer observer = mock(Observer.class);
     Operation operation = mock(Operation.class);
     Editor editor = new Editor();

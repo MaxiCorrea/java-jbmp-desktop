@@ -15,7 +15,7 @@ public class ImageTest {
   
   @Test
   @Parameters(method = "getSizes")
-  public void deberiaConstruirUnaImageEspecificandoSuTamanio(Size size) {
+  public void shouldBuildAnImageSpecifyingItsSize(Size size) {
     Image image = new Image(size);
     assertEquals(size , image.getSize());
   }
@@ -26,26 +26,26 @@ public class ImageTest {
   
   @Test
   @Parameters(method = "getImages")
-  public void deberiaCrearUnaImageApartirDeOtra(Image another) {
+  public void shouldCreateAnImageFromAnother(Image another) {
     Image image = new Image(another);
     assertNotSame(another , image);
     assertEquals(another , image);
   }
   
   @Test
-  public void deberiaPoderEstablecerUnPixelEnLaImagen() {
+  public void shouldBeAbleToSetAPixelInTheImage() {
     Image image = new Image( new Size(30,30));
     image.setPixel(0,0, new Pixel(10,10,10));
     assertEquals( new Pixel(10,10,10) , image.getPixel(0, 0));
   }
   
-  Object[] getDesiguales() {
+  Object[] getUnequal() {
     return new Object[]{"" ,"Hala" , new Integer(3) , new Double(34.8) , new Image( new Size(1,1))};
   }
   
   @Test
-  @Parameters(method = "getDesiguales")
-  public void imageUnaSoloDeberiaSerImageAOtraImage(Object noIgual) {
+  @Parameters(method = "getUnequal")
+  public void imageSoloShouldBeImageAAnotherImage(Object noIgual) {
     Image image = new Image( new Size(0,0));
     assertNotEquals(image , noIgual);
   }
