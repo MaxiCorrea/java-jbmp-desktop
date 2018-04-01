@@ -46,9 +46,7 @@ public class Size {
     Size other = (Size) obj;
     if (height != other.height)
       return false;
-    if (width != other.width)
-      return false;
-    return true;
+    return width == other.width;
   }
    
 }

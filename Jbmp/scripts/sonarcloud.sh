@@ -22,5 +22,5 @@ mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent verify --settings setting
 echo -e "\e[1;37m-----------------------------------------\e[0m"
 
 echo -e "\e[1;37m- Analyzing and uploading to sonarcloud -\e[0m"
-mvn sonar:sonar \ -Dsonar.organization=maxicorrea-github \ -Dsonar.host.url=https://sonarcloud.io \ -Dsonar.login=30c467aae36c8a0c34108159a0732c630c7c21d7 --settings settings.xml
+mvn sonar:sonar -Dsonar.organization=maxicorrea-github -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=30c467aae36c8a0c34108159a0732c630c7c21d7 --settings settings.xml
 echo -e "\e[1;37m-----------------------------------------\e[0m"
