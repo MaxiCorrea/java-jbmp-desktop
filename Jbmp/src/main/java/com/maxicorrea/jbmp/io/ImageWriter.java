@@ -9,22 +9,17 @@ import com.maxicorrea.jbmp.models.core.Pixel;
 import com.maxicorrea.jbmp.models.core.Size;
 
 public final class ImageWriter {
-  
+
   public ImageWriter() {
     super();
   }
 
   public boolean write(Image image, File file) throws BmpOutputException {
-    try {
-      FileOutputStream fo = null;
-      BufferedOutputStream bo = null;
-      fo = new FileOutputStream(addExtension(file));
-      bo = new BufferedOutputStream(fo);
+    try (FileOutputStream fo = new FileOutputStream(addExtension(file));
+        BufferedOutputStream bo = new BufferedOutputStream(fo)) {
       writeBitmapFileHeader(bo, image.getSize());
       writeBitmapInfoHeader(bo, image.getSize());
       writePixels(bo, image);
-      bo.close();
-      fo.close();
       return true;
     } catch (IOException e) {
       throw new BmpOutputException();

@@ -9,11 +9,10 @@ import com.maxicorrea.jbmp.models.core.Pixel;
 import com.maxicorrea.jbmp.models.core.Size;
 
 public final class ImageReader {
-  
+
   public Image read(File file) throws BmpInputException {
-    try {
-      FileInputStream fi = new FileInputStream(file);
-      BufferedInputStream bi = new BufferedInputStream(fi);
+    try (FileInputStream fi = new FileInputStream(file);
+        BufferedInputStream bi = new BufferedInputStream(fi)) {
       readFileHeader(bi);
       Size size = readInfoHeader(bi);
       return read(bi, size);
@@ -29,7 +28,9 @@ public final class ImageReader {
     if (BmpContants.CHARACTER_M != bi.read()) {
       throw new IOException();
     }
-    bi.skip(8L);
+    if(bi.skip(8L) < 0) {
+      throw new IOException();
+    }
     if (54 != readInt(bi)) {
       throw new IOException();
     }
@@ -51,7 +52,9 @@ public final class ImageReader {
     if (BmpContants.COMPRESSION != readInt(bi)) {
       throw new IOException();
     }
-    bi.skip(BmpContants.IGNORED);
+    if(bi.skip(BmpContants.IGNORED) < 0) {
+      throw new IOException();
+    }
     return size;
   }
 
@@ -61,28 +64,38 @@ public final class ImageReader {
     byte[] bytes = new byte[3];
     for (int i = size.getHeight() - 1; i >= 0; i--) {
       for (int j = 0; j < size.getWidth(); j++) {
-        bi.read(bytes);
+        if(bi.read(bytes) == -1) {
+          throw new IOException();
+        }
         int r = bytes[2] & 0xFF;
         int g = bytes[1] & 0xFF;
         int b = bytes[0] & 0xFF;
         image.setPixel(i, j, new Pixel(r, g, b));
       }
-      for (int x = 0; x < padding; x++)
-        bi.read();
+      for (int x = 0; x < padding; x++) {
+        if (bi.read() == -1) {
+          throw new IOException();
+        }
+      }
+
     }
     return image;
   }
 
   private int readInt(BufferedInputStream bi) throws IOException {
     byte[] bytes = new byte[4];
-    bi.read(bytes);
+    if (bi.read(bytes) == -1) {
+      throw new IOException();
+    }
     return (bytes[3] & 0xFF) << 24 | (bytes[2] & 0xFF) << 16 | (bytes[1] & 0xFF) << 8
         | bytes[0] & 0xFF;
   }
 
   private short readShort(BufferedInputStream bi) throws IOException {
     byte[] bytes = new byte[2];
-    bi.read(bytes);
+    if (bi.read(bytes) == -1) {
+      throw new IOException();
+    }
     return (short) ((short) (bytes[1] & 0xFF00) | (short) (bytes[0] & 0xFF));
   }
 
