@@ -25,7 +25,7 @@ class Horizontal implements Operation {
   
   @Override
   public String getName() {
-    return "HorizontalFlip";
+    return "Horizontal";
   }
   
 }

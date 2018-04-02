@@ -26,7 +26,7 @@ class Grayscale implements Operation {
 
   @Override
   public String getName() {
-    return "GrayscaleFilter";
+    return "Grayscale";
   }
   
 }

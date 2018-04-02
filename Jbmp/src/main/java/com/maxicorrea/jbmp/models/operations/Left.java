@@ -21,7 +21,7 @@ class Left implements Operation {
 
   @Override
   public String getName() {
-    return "LeftFlip";
+    return "Left";
   }
   
 }

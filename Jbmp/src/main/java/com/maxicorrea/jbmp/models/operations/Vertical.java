@@ -25,7 +25,7 @@ class Vertical implements Operation  {
 
   @Override
   public String getName() {
-    return "VerticalFlip";
+    return "Vertical";
   }
   
 }

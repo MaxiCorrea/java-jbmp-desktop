@@ -21,6 +21,6 @@ class Right implements Operation {
 
   @Override
   public String getName() {
-    return "RightFlip";
+    return "Right";
   }
 }

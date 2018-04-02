@@ -24,7 +24,7 @@ class Negative implements Operation {
   
   @Override
   public String getName() {
-    return "NegativeFilter";
+    return "Negative";
   }
   
 }
