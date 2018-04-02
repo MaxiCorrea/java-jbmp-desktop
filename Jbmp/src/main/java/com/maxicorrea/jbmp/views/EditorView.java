@@ -24,8 +24,6 @@ public class EditorView {
   static final int FRAME_HEIGHT = 580;
 
   private JFrame mainFrame;
-  private JPanel contentPane;
-
   private Item essentials;
   private Item filters;
   private Item flips;
@@ -33,31 +31,22 @@ public class EditorView {
 
   public EditorView(ImageView imageView) {
     this.imageView = imageView;
-    mainFrame = new JFrame();
-    getMainFrame();
+    mainFrame = new JFrame(TextLabels.APP_TITLE);
+    mainFrame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
+    mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    mainFrame.setIconImage(
+        Toolkit.getDefaultToolkit().getImage(getClass().getResource(IconLocations.FAVICON)));
+    mainFrame.setUndecorated(true);
+    mainFrame.setContentPane(getContentPane(imageView));
+    mainFrame.setLocationRelativeTo(null);
   }
 
-  JFrame getMainFrame() {
-    if (mainFrame == null) {
-      mainFrame = new JFrame(TextLabels.APP_TITLE);
-      mainFrame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
-      mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      mainFrame.setIconImage(
-          Toolkit.getDefaultToolkit().getImage(getClass().getResource(IconLocations.FAVICON)));
-      mainFrame.setUndecorated(true);
-      mainFrame.setContentPane(getContentPane(imageView));
-    }
-    return mainFrame;
-  }
-
-  JPanel getContentPane(ImageView imageView) {
-    if (contentPane == null) {
-      contentPane = new JPanel(new BorderLayout());
-      contentPane.setBackground(ColorConstants.BACKGROUND_COLOR);
-      contentPane.add(new MotionFrame(mainFrame), BorderLayout.NORTH);
-      contentPane.add(imageView, BorderLayout.CENTER);
-      contentPane.add(createWestPane(), BorderLayout.WEST);
-    }
+  private JPanel getContentPane(ImageView imageView) {
+    JPanel contentPane = new JPanel(new BorderLayout());
+    contentPane.setBackground(ColorConstants.BACKGROUND_COLOR);
+    contentPane.add(new MotionFrame(mainFrame), BorderLayout.NORTH);
+    contentPane.add(imageView, BorderLayout.CENTER);
+    contentPane.add(createWestPane(), BorderLayout.WEST);
     return contentPane;
   }
 
@@ -82,9 +71,9 @@ public class EditorView {
   Item getEssentialItems() {
     if (essentials == null) {
       essentials = new Item(new TitleItem(TextLabels.TITLE_ESSENTIAL));
-      essentials.addSubItem(new SubItem(TextLabels.OPEN, IconLocations.NEGATIVE));
-      essentials.addSubItem(new SubItem(TextLabels.SAVE, IconLocations.NEGATIVE));
-      essentials.addSubItem(new SubItem(TextLabels.RESET, IconLocations.NEGATIVE));
+      essentials.addSubItem(new SubItem(TextLabels.OPEN, IconLocations.OPEN));
+      essentials.addSubItem(new SubItem(TextLabels.SAVE, IconLocations.SAVE));
+      essentials.addSubItem(new SubItem(TextLabels.RESET, IconLocations.RESET));
     }
     return essentials;
   }
@@ -92,9 +81,9 @@ public class EditorView {
   Item getFilterItems() {
     if (filters == null) {
       filters = new Item(new TitleItem(TextLabels.TITLE_FILTER));
-      filters.addSubItem(new SubItem(TextLabels.GRAYSCALE, IconLocations.NEGATIVE, "Grayscale"));
-      filters.addSubItem(new SubItem(TextLabels.NEGATIVE, IconLocations.NEGATIVE, "Negative"));
-      filters.addSubItem(new SubItem(TextLabels.SEPIA, IconLocations.NEGATIVE, "Sepia"));
+      filters.addSubItem(new SubItem(TextLabels.GRAYSCALE, IconLocations.FILTER, "Grayscale"));
+      filters.addSubItem(new SubItem(TextLabels.NEGATIVE, IconLocations.FILTER, "Negative"));
+      filters.addSubItem(new SubItem(TextLabels.SEPIA, IconLocations.FILTER, "Sepia"));
     }
     return filters;
   }
@@ -102,8 +91,8 @@ public class EditorView {
   Item getFlipItems() {
     if (flips == null) {
       flips = new Item(new TitleItem(TextLabels.TITLE_FLIP));
-      flips.addSubItem(new SubItem(TextLabels.VERTICAL, IconLocations.NEGATIVE, "Vertical"));
-      flips.addSubItem(new SubItem(TextLabels.HORIZONTAL, IconLocations.NEGATIVE, "Horizontal"));
+      flips.addSubItem(new SubItem(TextLabels.VERTICAL, IconLocations.VERTICAL, "Vertical"));
+      flips.addSubItem(new SubItem(TextLabels.HORIZONTAL, IconLocations.HORIZONTAL, "Horizontal"));
       flips.addSubItem(new SubItem(TextLabels.RIGHT, IconLocations.ROTATE_RIGHT, "Right"));
       flips.addSubItem(new SubItem(TextLabels.LEFT, IconLocations.ROTATE_LEFT, "Left"));
     }
@@ -111,7 +100,6 @@ public class EditorView {
   }
 
   public void show() {
-    mainFrame.setLocationRelativeTo(null);
     mainFrame.setVisible(true);
   }
 
@@ -157,6 +145,10 @@ public class EditorView {
 
   public void showErrorMessage(String errMessage) {
     imageView.showErrorMessage(errMessage);
+  }
+
+  public ImageView getImageView() {
+    return imageView;
   }
 
 }

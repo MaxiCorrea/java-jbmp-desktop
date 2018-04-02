@@ -1,7 +1,6 @@
 package com.maxicorrea.jbmp.views;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
 import org.junit.Test;
 import com.maxicorrea.jbmp.views.utils.TextLabels;
 
@@ -9,8 +8,7 @@ public class EditorViewTest {
   
   @Test
   public void  shouldCreateTheEssentialItems() {
-    ImageView imageView = mock(ImageView.class);
-    EditorView editorView = new EditorView(imageView);
+    EditorView editorView = new EditorView( new ImageView());
     assertNotNull(editorView.getEssentialItems());
     assertEquals(3 ,editorView.getEssentialItems().getSubItems().size());
     assertEquals(TextLabels.OPEN , editorView.getEssentialItems().getSubItems().get(0).getButton().getText());
@@ -20,8 +18,7 @@ public class EditorViewTest {
   
   @Test
   public void  shouldCreateTheFilterItems() {
-    ImageView imageView = mock(ImageView.class);
-    EditorView editorView = new EditorView(imageView);
+    EditorView editorView = new EditorView(new ImageView());
     assertNotNull(editorView.getFilterItems());
     assertEquals(3 ,editorView.getFilterItems().getSubItems().size());
     assertEquals(TextLabels.GRAYSCALE , editorView.getFilterItems().getSubItems().get(0).getButton().getText());
@@ -31,8 +28,7 @@ public class EditorViewTest {
  
   @Test
   public void  shouldCreateTheFlipsItems() {
-    ImageView imageView = mock(ImageView.class);
-    EditorView editorView = new EditorView(imageView);
+    EditorView editorView = new EditorView(new ImageView());
     assertNotNull(editorView.getFlipItems());
     assertEquals(4 ,editorView.getFlipItems().getSubItems().size());
     assertEquals(TextLabels.VERTICAL , editorView.getFlipItems().getSubItems().get(0).getButton().getText());
@@ -42,11 +38,17 @@ public class EditorViewTest {
   }
     
   @Test
-  public void shouldBeAbleToShowTheFrame() {
-    ImageView imageView = mock(ImageView.class);
+  public void  shouldBeAbleToSendMessages() {
+    EditorView editorView = new EditorView(new ImageView());
+    editorView.showErrorMessage("");
+    editorView.showMessage("");
+  }
+  
+  @Test
+  public void shouldReturnImageView() {
+    ImageView imageView = new ImageView();
     EditorView editorView = new EditorView(imageView);
-    editorView.show();
-    assertTrue(editorView.getMainFrame().isVisible());
+    assertSame(imageView , editorView.getImageView());
   }
   
 }
