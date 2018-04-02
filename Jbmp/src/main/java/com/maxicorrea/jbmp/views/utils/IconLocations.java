@@ -19,7 +19,7 @@ public class IconLocations {
   public static final String VERTICAL = AppConfig.url("flipvertical");
   public static final String HORIZONTAL = AppConfig.url("fliphorizontal");
   public static final String OPEN = AppConfig.url("openfile");
-  public static final String SAVE = AppConfig.url("savefile");;
+  public static final String SAVE = AppConfig.url("savefile");
  
   private IconLocations() {
     throw new AssertionError("IconLocations is a utility class.");
