@@ -8,7 +8,7 @@ public class IconLoaderTest {
   @Test
   public void shouldLoadAllIcons() {
     assertNotNull(IconLoader.load(IconLocations.GRAYSCALE_PATH));
-    assertNotNull(IconLoader.load(IconLocations.NEGATIVE_PATH));
+    assertNotNull(IconLoader.load(IconLocations.NEGATIVE));
     assertNotNull(IconLoader.load(IconLocations.SEPIA_PATH));
     assertNotNull(IconLoader.load(IconLocations.ARROW_DOWN));
     assertNotNull(IconLoader.load(IconLocations.ARROW_UP));

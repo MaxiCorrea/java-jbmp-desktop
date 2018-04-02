@@ -5,7 +5,7 @@ import com.maxicorrea.jbmp.application.AppConfig;
 public class IconLocations {
 
   public static final String GRAYSCALE_PATH = AppConfig.url("brightness");
-  public static final String NEGATIVE_PATH = AppConfig.url("reset");
+  public static final String NEGATIVE = AppConfig.url("reset");
   public static final String SEPIA_PATH = AppConfig.url("negative");
   public static final String ARROW_DOWN = AppConfig.url("arrowdown");
   public static final String ARROW_UP = AppConfig.url("arrowup");
