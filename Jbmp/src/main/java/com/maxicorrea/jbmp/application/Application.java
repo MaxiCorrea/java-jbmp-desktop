@@ -21,7 +21,6 @@ public class Application {
     model.addObserver(view.getImageView());
     new OperationController(view, model);
     new EssentialsController(view, model);
-   
   }
 
 }
