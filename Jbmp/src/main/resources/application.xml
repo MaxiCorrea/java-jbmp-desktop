@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+  <entry key="arrowdown">/images/arrow_down.png</entry>
+  <entry key="arrowup">/images/arrow_up.png</entry>
+  <entry key="brightness">/images/brightness.png</entry>
+  <entry key="close">/images/close.png</entry>
+  <entry key="crop">/images/crop.png</entry>
+  <entry key="favicon">/images/favicon.png</entry>
+  <entry key="filter">/images/filter.png</entry>
+  <entry key="fliphorizontal">/images/flip_horizontal.png</entry>
+  <entry key="flipvertical">/images/flip_vertical.png</entry>
+  <entry key="mini">/images/mini.png</entry>
+  <entry key="negative">/images/negative.png</entry>
+  <entry key="openfile">/images/open_file.png</entry>
+  <entry key="reduce">/images/reduce.png</entry>
+  <entry key="reset">/images/reset.png</entry>
+  <entry key="rotateleft">/images/rotate_left.png</entry>
+  <entry key="rotateright">/images/rotate_right.png</entry>
+  <entry key="savefile">/images/save_file.png</entry>   
+</properties>
+
+
