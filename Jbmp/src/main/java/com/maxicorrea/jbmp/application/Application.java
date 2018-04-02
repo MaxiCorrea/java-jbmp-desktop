@@ -11,15 +11,17 @@ public class Application {
 
   public static void main(String[] args) {
     SwingUtilities.invokeLater(() -> {
-      createAndShowView( new Editor(), new EditorView(new ImageView()));
+      EditorView view =  new EditorView(new ImageView());
+      initializeApp( new Editor(), view);
+      view.show();
     });
   }
   
-  static void createAndShowView(Editor model , EditorView view) {
+  static void initializeApp(Editor model , EditorView view) {
     model.addObserver(view.getImageView());
     new OperationController(view, model);
     new EssentialsController(view, model);
-    view.show();
+   
   }
 
 }

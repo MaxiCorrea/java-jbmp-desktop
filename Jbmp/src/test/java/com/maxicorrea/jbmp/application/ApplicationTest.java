@@ -11,7 +11,7 @@ public class ApplicationTest {
   public void shouldStartTheApplication() {
     Editor model = new Editor();
     EditorView view = new EditorView( new ImageView());
-    Application.createAndShowView(model, view);
+    Application.initializeApp(model, view);
   }
 
 }
