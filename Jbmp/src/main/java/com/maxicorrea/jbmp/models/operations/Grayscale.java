@@ -2,24 +2,18 @@ package com.maxicorrea.jbmp.models.operations;
 
 import com.maxicorrea.jbmp.models.core.Image;
 import com.maxicorrea.jbmp.models.core.Operation;
-import com.maxicorrea.jbmp.models.core.Size;
+import com.maxicorrea.jbmp.models.core.Pixel;
 
 class Grayscale implements Operation {
 
   @Override
   public Image apply(Image image) {
     Image result = new Image(image);
-    Size size = result.getSize();
-    for (int row = 0; row < size.getHeight(); ++row) {
-      for (int col = 0; col < size.getWidth(); ++col) {
-        int redChannel = result.getPixel(row, col).getRed();
-        int greenChannel = result.getPixel(row, col).getGreen();
-        int blueChannel = result.getPixel(row, col).getBlue();
-        int average = (redChannel + greenChannel + blueChannel) / 3;
-        result.getPixel(row, col).setRed(average);
-        result.getPixel(row, col).setGreen(average);
-        result.getPixel(row, col).setBlue(average);
-      }
+    for (Pixel pixel : result) {
+      int average = (pixel.getRed() + pixel.getGreen() + pixel.getBlue()) / 3;
+      pixel.setRed(average);
+      pixel.setGreen(average);
+      pixel.setBlue(average);
     }
     return result;
   }
@@ -28,5 +22,5 @@ class Grayscale implements Operation {
   public String getName() {
     return "Grayscale";
   }
-  
+
 }

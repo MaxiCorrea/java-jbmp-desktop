@@ -77,6 +77,7 @@ public class PixelTest {
     Pixel pixel = new Pixel(another);
     assertNotSame(another,pixel);
     assertEquals(another , pixel);
+    assertEquals(another.hashCode() , pixel.hashCode());
   }
   
   Object[] notEqualsObjects() {
@@ -85,7 +86,8 @@ public class PixelTest {
   
   public void shouldOnlyBeEqualToAnotherPixelObject( Object notEqual) {
     Pixel pixel = new Pixel(0,0,0);
-    assertNotEquals(pixel , notEqual);
+    assertNotEquals(pixel , notEqual); 
+    assertNotEquals(pixel.hashCode() , notEqual.hashCode()); 
   }
   
 }
