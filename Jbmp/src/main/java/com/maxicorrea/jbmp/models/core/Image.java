@@ -1,8 +1,9 @@
 package com.maxicorrea.jbmp.models.core;
 
 import java.util.Arrays;
+import java.util.Iterator;
 
-public class Image {
+public class Image implements Iterable<Pixel> {
 
   private Size size;
   private Pixel[][] pixels;
@@ -17,7 +18,7 @@ public class Image {
     pixels = new Pixel[size.getHeight()][size.getWidth()];
     for (int row = 0; row < size.getHeight(); ++row) {
       for (int col = 0; col < size.getWidth(); ++col) {
-        if(other.pixels[row][col] != null) {
+        if (other.pixels[row][col] != null) {
           pixels[row][col] = new Pixel(other.pixels[row][col]);
         }
       }
@@ -35,6 +36,49 @@ public class Image {
   public Size getSize() {
     return size;
   }
+
+  @Override
+  public Iterator<Pixel> iterator() {
+    return new MatrixIterator();
+  }
+
+  private class MatrixIterator implements Iterator<Pixel> {
+
+    private RowIterator rowIterator = new RowIterator();
+
+    @Override
+    public boolean hasNext() {
+      if (!rowIterator.hasNext()) {
+        rowIterator.row++;
+        rowIterator.col = 0;
+      }
+      return rowIterator.hasNext();
+    }
+
+    @Override
+    public Pixel next() {
+      return rowIterator.next();
+    }
+
+  }
+
+  private class RowIterator implements Iterator<Pixel> {
+
+    private int row;
+    private int col;
+
+    @Override
+    public boolean hasNext() {
+      return row < pixels.length && col < pixels[row].length;
+    }
+
+    @Override
+    public Pixel next() {
+      return pixels[row][col++];
+    }
+
+  }
+
 
   @Override
   public int hashCode() {
