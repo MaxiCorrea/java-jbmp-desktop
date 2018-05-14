@@ -28,10 +28,10 @@ public final class ImageReader {
     if (BmpConstants.CHARACTER_M != bi.read()) {
       throw new IOException();
     }
-    if(bi.skip(8L) < 0) {
+    if(bi.skip(BmpConstants.UNUSED) < 0) {
       throw new IOException();
     }
-    if (54 != readInt(bi)) {
+    if (BmpConstants.START_OF_BMP_DATA != readInt(bi)) {
       throw new IOException();
     }
   }
