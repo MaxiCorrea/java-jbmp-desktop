@@ -34,7 +34,7 @@ public final class ImageWriter {
   }
 
   private void writeBitmapFileHeader(BufferedOutputStream bo, Size size) throws IOException {
-    bo.write(new byte[] {BmpContants.CHARACTER_B, BmpContants.CHARACTER_M});
+    bo.write(new byte[] {BmpConstants.CHARACTER_B, BmpConstants.CHARACTER_M});
     bo.write(toInt(
         size.getWidth() * size.getHeight() * 3 + size.getHeight() * (size.getWidth() % 4) + 54));
     bo.write(toShort(0));
@@ -43,12 +43,12 @@ public final class ImageWriter {
   }
 
   private void writeBitmapInfoHeader(BufferedOutputStream bo, Size size) throws IOException {
-    bo.write(toInt(BmpContants.HEAD_SIZE));
+    bo.write(toInt(BmpConstants.HEAD_SIZE));
     bo.write(toInt(size.getWidth()));
     bo.write(toInt(size.getHeight()));
-    bo.write(toShort(BmpContants.IMAGE_PLANS));
-    bo.write(toShort(BmpContants.BITS_PER_PIXEL));
-    bo.write(toInt(BmpContants.COMPRESSION));
+    bo.write(toShort(BmpConstants.IMAGE_PLANS));
+    bo.write(toShort(BmpConstants.BITS_PER_PIXEL));
+    bo.write(toInt(BmpConstants.COMPRESSION));
     bo.write(
         toInt(size.getWidth() * size.getHeight() * 3 + size.getHeight() * (size.getWidth() % 4)));
     bo.write(toInt(0));
@@ -59,7 +59,7 @@ public final class ImageWriter {
 
   private void writePixels(BufferedOutputStream bo, Image image) throws IOException {
     Size size = image.getSize();
-    int padding = size.getWidth() % BmpContants.PADDING;
+    int padding = size.getWidth() % BmpConstants.PADDING;
     for (int i = size.getHeight() - 1; i >= 0; i--) {
       for (int j = 0; j < size.getWidth(); j++) {
         bo.write((byte) image.getPixel(i, j).getBlue());

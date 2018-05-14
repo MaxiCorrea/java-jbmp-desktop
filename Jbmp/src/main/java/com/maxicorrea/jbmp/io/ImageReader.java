@@ -22,10 +22,10 @@ public final class ImageReader {
   }
 
   private void readFileHeader(BufferedInputStream bi) throws IOException {
-    if (BmpContants.CHARACTER_B != bi.read()) {
+    if (BmpConstants.CHARACTER_B != bi.read()) {
       throw new IOException();
     }
-    if (BmpContants.CHARACTER_M != bi.read()) {
+    if (BmpConstants.CHARACTER_M != bi.read()) {
       throw new IOException();
     }
     if(bi.skip(8L) < 0) {
@@ -37,22 +37,22 @@ public final class ImageReader {
   }
 
   private Size readInfoHeader(BufferedInputStream bi) throws IOException {
-    if (BmpContants.HEAD_SIZE != readInt(bi)) {
+    if (BmpConstants.HEAD_SIZE != readInt(bi)) {
       throw new IOException();
     }
     int width = readInt(bi);
     int height = readInt(bi);
     Size size = new Size(height, width);
-    if (BmpContants.IMAGE_PLANS != readShort(bi)) {
+    if (BmpConstants.IMAGE_PLANS != readShort(bi)) {
       throw new IOException();
     }
-    if (BmpContants.BITS_PER_PIXEL != readShort(bi)) {
+    if (BmpConstants.BITS_PER_PIXEL != readShort(bi)) {
       throw new IOException();
     }
-    if (BmpContants.COMPRESSION != readInt(bi)) {
+    if (BmpConstants.COMPRESSION != readInt(bi)) {
       throw new IOException();
     }
-    if(bi.skip(BmpContants.IGNORED) < 0) {
+    if(bi.skip(BmpConstants.IGNORED) < 0) {
       throw new IOException();
     }
     return size;
@@ -60,7 +60,7 @@ public final class ImageReader {
 
   private Image read(BufferedInputStream bi, Size size) throws IOException {
     Image image = new Image(size);
-    int padding = size.getWidth() % BmpContants.PADDING;
+    int padding = size.getWidth() % BmpConstants.PADDING;
     byte[] bytes = new byte[3];
     for (int i = size.getHeight() - 1; i >= 0; i--) {
       for (int j = 0; j < size.getWidth(); j++) {

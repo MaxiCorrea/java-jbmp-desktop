@@ -1,6 +1,6 @@
 package com.maxicorrea.jbmp.io;
 
-final class BmpContants {
+final class BmpConstants {
 
   static final int CHARACTER_B = 66;
   static final int CHARACTER_M = 77;
@@ -11,7 +11,7 @@ final class BmpContants {
   static final int PADDING = 4;
   static final int IGNORED = 20;
 
-  private BmpContants() {
+  private BmpConstants() {
     throw new AssertionError();
   }
   
