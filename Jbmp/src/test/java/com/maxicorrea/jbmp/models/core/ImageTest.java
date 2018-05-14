@@ -2,6 +2,7 @@ package com.maxicorrea.jbmp.models.core;
 
 import static org.junit.Assert.*;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import junitparams.Parameters;
@@ -70,11 +71,27 @@ public class ImageTest {
     assertEquals(pixelIn00, iterator.next());
     assertTrue(iterator.hasNext());
     assertEquals(pixelIn01, iterator.next());
-    assertTrue(iterator.hasNext());
+    assertTrue(iterator.hasNext()); 
     assertEquals(pixelIn10, iterator.next());
     assertTrue(iterator.hasNext());
     assertEquals(pixelIn11, iterator.next());
     assertFalse(iterator.hasNext());
   }
 
+  @Test(expected = NoSuchElementException.class)
+  public void hasNextShouldBeCalledBeforeNext() {
+    Image image = new Image(new Size(1, 1));
+    image.setPixel(0, 0, new Pixel(0, 0, 0));
+    Iterator<Pixel> iter = image.iterator();
+    iter.next();
+  }
+  
+  @Test(expected = NoSuchElementException.class)
+  public void shouldThrowAnExceptionIfThereAreNoMoreElementsToIterate() {
+    Image image = new Image(new Size(0, 0));
+    Iterator<Pixel> iter = image.iterator();
+    iter.hasNext();
+    iter.next();
+  }
+  
 }

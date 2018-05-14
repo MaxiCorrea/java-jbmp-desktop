@@ -2,6 +2,7 @@ package com.maxicorrea.jbmp.models.core;
 
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class Image implements Iterable<Pixel> {
 
@@ -45,18 +46,22 @@ public class Image implements Iterable<Pixel> {
   private class MatrixIterator implements Iterator<Pixel> {
 
     private RowIterator rowIterator = new RowIterator();
+    private boolean hasNext = false;
 
     @Override
     public boolean hasNext() {
       if (!rowIterator.hasNext()) {
-        rowIterator.row++;
-        rowIterator.col = 0;
+        rowIterator.nextRow();
       }
-      return rowIterator.hasNext();
+      hasNext = rowIterator.hasNext();
+      return hasNext;
     }
 
     @Override
     public Pixel next() {
+      if (!hasNext) {
+        throw new NoSuchElementException();
+      }
       return rowIterator.next();
     }
 
@@ -67,6 +72,13 @@ public class Image implements Iterable<Pixel> {
     private int row;
     private int col;
 
+    void nextRow() {
+      if (row < pixels.length) {
+        ++row;
+        col = 0;
+      }
+    }
+
     @Override
     public boolean hasNext() {
       return row < pixels.length && col < pixels[row].length;
@@ -74,6 +86,9 @@ public class Image implements Iterable<Pixel> {
 
     @Override
     public Pixel next() {
+      if (!hasNext()) {
+        throw new NoSuchElementException();
+      }
       return pixels[row][col++];
     }
 
