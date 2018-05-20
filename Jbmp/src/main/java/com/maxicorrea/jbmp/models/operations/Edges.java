@@ -17,8 +17,8 @@ class Edges implements Operation {
           result.setPixel(currRow, currCol, Pixel.BLACK);
           continue;
         }
-        int sumX = extractMethod1(origin, currRow, currCol);
-        int sumY = extractMethod2(origin, currRow, currCol);
+        double sumX = extractMethod1(origin, currRow, currCol);
+        double sumY = extractMethod2(origin, currRow, currCol);
         int val = (int) Math.sqrt(sumX * sumX + sumY * sumY);
         result.setPixel(currRow, currCol, new Pixel(val, val, val));
       }
