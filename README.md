@@ -5,18 +5,27 @@ Simple editor de imagen en formato bmp.
 
 ### Caracteriticas
   1- Permite realizar las siguientes operaciones sobre una imagen BMP.
-  * Abrir.
-  * Guardar.
-  * Resetear.
-  * Escala de grices / Negativo / Sepia.
-  * Vertical/Horizontal/Derecha/Izquierda.
+  * Open.
+  * Save.
+  * Rest.
+  * Grayscale/Negative/Sepia/Blur/Edges.
+  * Vertical/Horizontal/Left/Right.
 
 ### Tecnologías
   * JavaSE8
   * Swing
   
 ### Screenshot  
-![screenshot from 2018-04-02 05 35 07](https://user-images.githubusercontent.com/34853850/38189826-101d0c50-3638-11e8-923c-04f6210b8134.png)
+![screnshot0](https://user-images.githubusercontent.com/34853850/40282838-633ea66c-5c4b-11e8-98e3-0085ae64562b.png)
+
+![screnshot1](https://user-images.githubusercontent.com/34853850/40282848-6ed8405a-5c4b-11e8-8525-80534f6829e5.png)
+
+![screnshot2](https://user-images.githubusercontent.com/34853850/40282852-76deffd2-5c4b-11e8-89c7-dfcc1e53fa14.png)
+
+![screnshot3](https://user-images.githubusercontent.com/34853850/40282856-7d7e3e02-5c4b-11e8-9d2d-5f710023c5ab.png)
+
+![screnshot4](https://user-images.githubusercontent.com/34853850/40282859-8521ad06-5c4b-11e8-833d-994510161b36.png)
+
 [![](https://sonarcloud.io/api/project_badges/measure?project=com.maxicorrea%3AJbmp&metric=code_smells)](https://sonarcloud.io/dashboard?id=com.maxicorrea%3AJbmp)
 [![](https://sonarcloud.io/api/project_badges/measure?project=com.maxicorrea%3AJbmp&metric=coverage)](https://sonarcloud.io/dashboard?id=com.maxicorrea%3AJbmp)
 [![](https://sonarcloud.io/api/project_badges/measure?project=com.maxicorrea%3AJbmp&metric=duplicated_lines_density)](https://sonarcloud.io/dashboard?id=com.maxicorrea%3AJbmp)
