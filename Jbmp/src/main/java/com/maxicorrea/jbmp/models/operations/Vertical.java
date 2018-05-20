@@ -3,21 +3,18 @@ package com.maxicorrea.jbmp.models.operations;
 import com.maxicorrea.jbmp.models.core.Image;
 import com.maxicorrea.jbmp.models.core.Operation;
 import com.maxicorrea.jbmp.models.core.Pixel;
-import com.maxicorrea.jbmp.models.core.Size;
 
-class Vertical implements Operation  {
+class Vertical implements Operation {
 
   @Override
-  public Image apply(Image image) {
-    Image result = new Image(image);
-    Size size = result.getSize();
-    for (int col = 0; col < size.getWidth(); ++col) {
-      for (int row = 0; row < size.getHeight(); ++row) {
-        Pixel pixelImage = image.getPixel(row, col);
-        Pixel pixelResult = result.getPixel(image.getSize().getHeight() - 1 - row, col);
-        pixelResult.setRed(pixelImage.getRed());
-        pixelResult.setGreen(pixelImage.getGreen());
-        pixelResult.setBlue(pixelImage.getBlue());
+  public Image apply(Image origin) {
+    Image result = new Image(origin.getSize());
+    final int ROWS = result.getSize().getHeight();
+    final int COLS = result.getSize().getWidth();
+    for (int currentCol = 0; currentCol < COLS; ++currentCol) {
+      for (int currentRow = 0; currentRow < ROWS; ++currentRow) {
+        Pixel pixel = origin.getPixel(currentRow, currentCol);
+        result.setPixel(ROWS - 1 - currentRow, currentCol, pixel);
       }
     }
     return result;
@@ -27,5 +24,5 @@ class Vertical implements Operation  {
   public String getName() {
     return "Vertical";
   }
-  
+
 }

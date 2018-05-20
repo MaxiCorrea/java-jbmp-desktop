@@ -8,12 +8,14 @@ import com.maxicorrea.jbmp.models.core.Size;
 class Left implements Operation {
 
   @Override
-  public Image apply(Image image) {
-    Size size = Size.invert(image.getSize());
-    Image result = new Image(size);
-    for (int row = 0; row < size.getHeight(); ++row) {
-      for (int col = 0; col < size.getWidth(); ++col) {
-        result.setPixel(row, col, new Pixel(image.getPixel(col, size.getHeight() - 1 - row)));
+  public Image apply(Image origin) {
+    Image result = new Image(Size.invert(origin.getSize()));
+    final int ROWS = result.getSize().getHeight();
+    final int COLS = result.getSize().getWidth();
+    for (int currentRow = 0; currentRow < ROWS; ++currentRow) {
+      for (int currentCol = 0; currentCol < COLS; ++currentCol) {
+        Pixel px = new Pixel(origin.getPixel(currentCol, ROWS - 1 - currentRow));
+        result.setPixel(currentRow, currentCol, px);
       }
     }
     return result;
@@ -23,5 +25,5 @@ class Left implements Operation {
   public String getName() {
     return "Left";
   }
-  
+
 }

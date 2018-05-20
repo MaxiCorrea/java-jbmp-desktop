@@ -10,17 +10,22 @@ public class VerticalTest {
 
   @Test
   public void shouldRotateVerticallyTheImage() {
-    Image actualImage = new Image( new Size(2,2));
-    actualImage.setPixel(0,0, new Pixel(10,56,65));
-    actualImage.setPixel(0,1, new Pixel(20,16,5));
-    actualImage.setPixel(1,0, new Pixel(30,36,15));
-    actualImage.setPixel(1,1, new Pixel(40,56,25));
-    Image expectedImage = new Image( new Size(2,2));
-    expectedImage.setPixel(0,0, new Pixel(30,36,15));
-    expectedImage.setPixel(0,1, new Pixel(40,56,25));
-    expectedImage.setPixel(1,0, new Pixel(10,56,65));
-    expectedImage.setPixel(1,1, new Pixel(20,16,5));
-    assertEquals(expectedImage , new Vertical().apply(actualImage));
+    /*
+       actual     expected
+       0 , 1  ---> 2 , 3
+       2 , 3       0 , 1
+    */
+    Image actualImage = new Image(new Size(2, 2));
+    actualImage.setPixel(0, 0, new Pixel(0, 0, 0));
+    actualImage.setPixel(0, 1, new Pixel(1, 1, 1));
+    actualImage.setPixel(1, 0, new Pixel(2, 2, 2));
+    actualImage.setPixel(1, 1, new Pixel(3, 3, 3));
+    Image expectedImage = new Image(new Size(2, 2));
+    expectedImage.setPixel(0, 0, new Pixel(2, 2, 2));
+    expectedImage.setPixel(0, 1, new Pixel(3, 3, 3));
+    expectedImage.setPixel(1, 0, new Pixel(0, 0, 0));
+    expectedImage.setPixel(1, 1, new Pixel(1, 1, 1));
+    assertEquals(expectedImage, new Vertical().apply(actualImage));
   }
 
 }
