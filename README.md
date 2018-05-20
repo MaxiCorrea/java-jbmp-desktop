@@ -7,7 +7,7 @@ Simple editor de imagen en formato bmp.
   1- Permite realizar las siguientes operaciones sobre una imagen BMP.
   * Open.
   * Save.
-  * Rest.
+  * Reset.
   * Grayscale/Negative/Sepia/Blur/Edges.
   * Vertical/Horizontal/Left/Right.
 
@@ -25,6 +25,8 @@ Simple editor de imagen en formato bmp.
 ![screnshot3](https://user-images.githubusercontent.com/34853850/40282856-7d7e3e02-5c4b-11e8-9d2d-5f710023c5ab.png)
 
 ![screnshot4](https://user-images.githubusercontent.com/34853850/40282859-8521ad06-5c4b-11e8-833d-994510161b36.png)
+
+![screnshot5](https://user-images.githubusercontent.com/34853850/40282906-46b7e688-5c4c-11e8-8c45-0b52d1cd2071.png)
 
 [![](https://sonarcloud.io/api/project_badges/measure?project=com.maxicorrea%3AJbmp&metric=code_smells)](https://sonarcloud.io/dashboard?id=com.maxicorrea%3AJbmp)
 [![](https://sonarcloud.io/api/project_badges/measure?project=com.maxicorrea%3AJbmp&metric=coverage)](https://sonarcloud.io/dashboard?id=com.maxicorrea%3AJbmp)
