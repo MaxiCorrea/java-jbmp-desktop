@@ -29,7 +29,7 @@ class Edges implements Operation {
   static int[][] kernelX = {{-1, 0, 1}, {-2, 0, 2}, {-1, 0, 1}};
 
   private int extractMethod2(Image origin, int currRow, int currCol) {
-    int sumY = origin.getPixel(currRow - 1, currCol - 1).getRed() * kernelY[0][0]
+    return origin.getPixel(currRow - 1, currCol - 1).getRed() * kernelY[0][0]
         + origin.getPixel(currRow - 1, currCol).getRed() * kernelY[0][1]
         + origin.getPixel(currRow - 1, currCol + 1).getRed() * kernelY[0][2]
         + origin.getPixel(currRow, currCol - 1).getRed() * kernelY[1][0]
@@ -38,7 +38,6 @@ class Edges implements Operation {
         + origin.getPixel(currRow + 1, currCol - 1).getRed() * kernelY[2][0]
         + origin.getPixel(currRow + 1, currCol).getRed() * kernelY[2][1]
         + origin.getPixel(currRow + 1, currCol + 1).getRed() * kernelY[2][2];
-    return sumY;
   }
 
   static int[][] kernelY = {{1, 2, 1}, {0, 0, 0}, {-1, -2, -1}};

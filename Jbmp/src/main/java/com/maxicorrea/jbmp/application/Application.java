@@ -1,5 +1,7 @@
 package com.maxicorrea.jbmp.application;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -17,7 +19,8 @@ public class Application {
       try {
         UIManager.setLookAndFeel(new NimbusLookAndFeel()); 
       } catch (UnsupportedLookAndFeelException e) {
-        System.err.println(e);
+        Logger log = Logger.getGlobal();
+        log.log(Level.INFO, "No NimbusLookAndFeel");
       }
       EditorView view = new EditorView(new ImageView());
       initializeApp(new Editor(), view);
