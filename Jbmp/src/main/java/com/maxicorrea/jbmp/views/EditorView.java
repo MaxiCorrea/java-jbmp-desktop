@@ -23,7 +23,7 @@ public class EditorView {
   static final int FRAME_WIDTH = 990;
   static final int FRAME_HEIGHT = 580;
 
-  private JFrame mainFrame;
+  private final JFrame mainFrame;
   private Item essentials;
   private Item filters;
   private Item flips;
@@ -39,7 +39,7 @@ public class EditorView {
     mainFrame.setUndecorated(true);
     mainFrame.setContentPane(getContentPane(imageView));
     mainFrame.setLocationRelativeTo(null);
-  }
+  } 
 
   private JPanel getContentPane(ImageView imageView) {
     JPanel contentPane = new JPanel(new BorderLayout());
@@ -65,6 +65,8 @@ public class EditorView {
     extra.add(getFlipItems());
     itemsPanel.add(extra);
     pane.setViewportView(itemsPanel);
+    pane.getVerticalScrollBar().setPreferredSize(new Dimension(5, 0));
+    pane.getHorizontalScrollBar().setPreferredSize(new Dimension(0, 5));
     return pane;
   }
 
@@ -84,6 +86,8 @@ public class EditorView {
       filters.addSubItem(new SubItem(TextLabels.GRAYSCALE, IconLocations.FILTER, "Grayscale"));
       filters.addSubItem(new SubItem(TextLabels.NEGATIVE, IconLocations.FILTER, "Negative"));
       filters.addSubItem(new SubItem(TextLabels.SEPIA, IconLocations.FILTER, "Sepia"));
+      filters.addSubItem(new SubItem(TextLabels.BLUR, IconLocations.FILTER, "Blur"));
+      filters.addSubItem(new SubItem(TextLabels.EDGES, IconLocations.FILTER, "Edges")); 
     }
     return filters;
   }

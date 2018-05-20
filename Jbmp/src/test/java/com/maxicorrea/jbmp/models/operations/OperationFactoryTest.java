@@ -17,7 +17,9 @@ public class OperationFactoryTest {
     assertTrue(operations.get(4) instanceof Right);
     assertTrue(operations.get(5) instanceof Sepia);
     assertTrue(operations.get(6) instanceof Vertical);
-    assertEquals(7 , operations.size());
+    assertTrue(operations.get(7) instanceof Blur); 
+    assertTrue(operations.get(8) instanceof Edges); 
+    assertEquals(9 , operations.size());
   }
 
 }

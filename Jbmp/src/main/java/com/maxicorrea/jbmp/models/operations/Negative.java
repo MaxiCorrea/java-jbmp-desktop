@@ -7,19 +7,23 @@ import com.maxicorrea.jbmp.models.core.Pixel;
 class Negative implements Operation {
 
   @Override
-  public Image apply(Image image) {
-    Image result = new Image(image); 
-    for(Pixel pixel : result) {
-      pixel.setRed(Pixel.MAX_VALUE - pixel.getRed());
-      pixel.setGreen(Pixel.MAX_VALUE - pixel.getGreen());
-      pixel.setBlue(Pixel.MAX_VALUE - pixel.getBlue());
+  public Image apply(Image origin) { 
+    Image result = new Image(origin.getSize());
+    final int ROWS = result.getSize().getHeight();
+    final int COLS = result.getSize().getWidth();
+    for (int currentRow = 0; currentRow < ROWS; ++currentRow) {
+      for (int currentCol = 0; currentCol < COLS; ++currentCol) {
+        final Pixel pixel = origin.getPixel(currentRow, currentCol);
+        result.setPixel(currentRow, currentCol, Pixel.negate(pixel));
+      }
     }
+    
     return result;
   }
-  
+
   @Override
   public String getName() {
     return "Negative";
   }
-  
+
 }

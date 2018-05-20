@@ -79,6 +79,8 @@ public class ImageView extends JPanel implements Observer {
   JScrollPane getImgPane() {
     JScrollPane pane = new JScrollPane(getImageLabel());
     pane.setBorder(null);
+    pane.getVerticalScrollBar().setPreferredSize(new Dimension(5, 0));
+    pane.getHorizontalScrollBar().setPreferredSize(new Dimension(0, 5));
     pane.getViewport().setBackground(new Color(28, 35, 45));
     pane.setBackground(ColorConstants.BACKGROUND_COLOR_2);
     return pane;
@@ -114,7 +116,7 @@ public class ImageView extends JPanel implements Observer {
         int r = image.getPixel(row, col).getRed();
         int g = image.getPixel(row, col).getGreen();
         int b = image.getPixel(row, col).getBlue();
-        img.setRGB(col, row, (new Color(r, g, b)).getRGB());
+        img.setRGB(col, row, (new Color(r, g, b)).getRGB()); 
       }
     }
     return img;

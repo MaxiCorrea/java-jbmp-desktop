@@ -1,27 +1,27 @@
 package com.maxicorrea.jbmp.models.core;
 
 public class Size {
-  
+
   public static Size invert(Size size) {
-    return new Size(size.getWidth() , size.getHeight());
+    return new Size(size.getWidth(), size.getHeight());
   }
-  
+
   private final int height;
   private final int width;
-  
-  public Size( int height , int width) {
+
+  public Size(int height, int width) {
     this.height = height;
     this.width = width;
   }
-  
+
   public Size(Size other) {
-    this(other.getHeight() , other.getWidth());
+    this(other.getHeight(), other.getWidth());
   }
-  
+
   public int getHeight() {
     return height;
   }
-  
+
   public int getWidth() {
     return width;
   }
@@ -48,5 +48,10 @@ public class Size {
       return false;
     return width == other.width;
   }
-   
+
+  @Override
+  public String toString() {
+    return String.format("Size [height=%d, width=%d]", height, width);
+  }
+
 }
