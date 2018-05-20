@@ -1,12 +1,10 @@
 package com.maxicorrea.jbmp.models.core;
 
 import static org.junit.Assert.*;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import junitparams.Parameters;
 import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 
 @RunWith(JUnitParamsRunner.class)
 public class ImageTest {
@@ -33,7 +31,7 @@ public class ImageTest {
     Image image = new Image(another);
     assertNotSame(another, image);
     assertEquals(another, image);
-    assertEquals(another.hashCode() , image.hashCode());
+    assertEquals(another.hashCode(), image.hashCode());
   }
 
   @Test
@@ -56,42 +54,12 @@ public class ImageTest {
   }
 
   @Test
-  public void shouldBeAbleToIterateThroughEachPixel() {
-    Image image = new Image(new Size(2, 2));
-    Pixel pixelIn00 = new Pixel(0, 0, 0);
-    Pixel pixelIn01 = new Pixel(1, 1, 1);
-    Pixel pixelIn10 = new Pixel(2, 2, 2);
-    Pixel pixelIn11 = new Pixel(3, 3, 3);
-    image.setPixel(0, 0, pixelIn00);
-    image.setPixel(0, 1, pixelIn01);
-    image.setPixel(1, 0, pixelIn10);
-    image.setPixel(1, 1, pixelIn11);
-    Iterator<Pixel> iterator = image.iterator();
-    assertTrue(iterator.hasNext());
-    assertEquals(pixelIn00, iterator.next());
-    assertTrue(iterator.hasNext());
-    assertEquals(pixelIn01, iterator.next());
-    assertTrue(iterator.hasNext()); 
-    assertEquals(pixelIn10, iterator.next());
-    assertTrue(iterator.hasNext());
-    assertEquals(pixelIn11, iterator.next());
-    assertFalse(iterator.hasNext());
-  }
-
-  @Test(expected = NoSuchElementException.class)
-  public void hasNextShouldBeCalledBeforeNext() {
-    Image image = new Image(new Size(1, 1));
-    image.setPixel(0, 0, new Pixel(0, 0, 0));
-    Iterator<Pixel> iter = image.iterator();
-    iter.next();
-  }
-  
-  @Test(expected = NoSuchElementException.class)
-  public void shouldThrowAnExceptionIfThereAreNoMoreElementsToIterate() {
-    Image image = new Image(new Size(0, 0));
-    Iterator<Pixel> iter = image.iterator();
-    iter.hasNext();
-    iter.next();
+  public void shouldIndicateWhenACoordinateIsAtTheLimit() {
+    Image image = new Image( new Size(2, 2));
+    assertTrue(image.inLimit(0, 0));
+    assertTrue(image.inLimit(0, 1));
+    assertTrue(image.inLimit(1, 0));
+    assertTrue(image.inLimit(1, 1));
   }
   
 }

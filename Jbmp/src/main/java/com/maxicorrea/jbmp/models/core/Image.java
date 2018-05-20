@@ -1,20 +1,18 @@
 package com.maxicorrea.jbmp.models.core;
 
 import java.util.Arrays;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
 
-public class Image implements Iterable<Pixel> {
+public final class Image {
 
-  private Size size;
-  private Pixel[][] pixels;
+  private final Size size;
+  private final Pixel[][] pixels;
 
   public Image(Size size) {
     this.size = size;
     pixels = new Pixel[size.getHeight()][size.getWidth()];
   }
 
-  public Image(Image other) {
+  Image(Image other) {
     size = new Size(other.getSize());
     pixels = new Pixel[size.getHeight()][size.getWidth()];
     for (int row = 0; row < size.getHeight(); ++row) {
@@ -34,67 +32,15 @@ public class Image implements Iterable<Pixel> {
     return pixels[row][col];
   }
 
+  public boolean inLimit(int row, int col) {
+    return row == 0 || row == size.getHeight() - 1 ||
+           col == 0 || col == size.getWidth() - 1; 
+  }
+
   public Size getSize() {
     return size;
   }
-
-  @Override
-  public Iterator<Pixel> iterator() {
-    return new MatrixIterator();
-  }
-
-  private class MatrixIterator implements Iterator<Pixel> {
-
-    private RowIterator rowIterator = new RowIterator();
-    private boolean hasNext = false;
-
-    @Override
-    public boolean hasNext() {
-      if (!rowIterator.hasNext()) {
-        rowIterator.nextRow();
-      }
-      hasNext = rowIterator.hasNext();
-      return hasNext;
-    }
-
-    @Override
-    public Pixel next() {
-      if (!hasNext) {
-        throw new NoSuchElementException();
-      }
-      return rowIterator.next();
-    }
-
-  }
-
-  private class RowIterator implements Iterator<Pixel> {
-
-    private int row;
-    private int col;
-
-    void nextRow() {
-      if (row < pixels.length) {
-        ++row;
-        col = 0;
-      }
-    }
-
-    @Override
-    public boolean hasNext() {
-      return row < pixels.length && col < pixels[row].length;
-    }
-
-    @Override
-    public Pixel next() {
-      if (!hasNext()) {
-        throw new NoSuchElementException();
-      }
-      return pixels[row][col++];
-    }
-
-  }
-
-
+  
   @Override
   public int hashCode() {
     final int prime = 31;
@@ -121,6 +67,19 @@ public class Image implements Iterable<Pixel> {
     } else if (!size.equals(other.size))
       return false;
     return true;
+  }
+
+  @Override
+  public String toString() {
+    return String.format("Image [size=%s, pixels=%s]", size, matrixString());
+  }
+
+  private String matrixString() {
+    StringBuilder out = new StringBuilder();
+    for (Pixel[] row : pixels) {
+      out.append("\n").append(Arrays.toString(row));
+    }
+    return out.toString();
   }
 
 }
