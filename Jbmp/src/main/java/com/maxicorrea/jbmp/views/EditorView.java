@@ -39,7 +39,7 @@ public class EditorView {
     mainFrame.setUndecorated(true);
     mainFrame.setContentPane(getContentPane(imageView));
     mainFrame.setLocationRelativeTo(null);
-  } 
+  }
 
   private JPanel getContentPane(ImageView imageView) {
     JPanel contentPane = new JPanel(new BorderLayout());
@@ -73,9 +73,9 @@ public class EditorView {
   Item getEssentialItems() {
     if (essentials == null) {
       essentials = new Item(new TitleItem(TextLabels.TITLE_ESSENTIAL));
-      essentials.addSubItem(new SubItem(TextLabels.OPEN, IconLocations.OPEN));
-      essentials.addSubItem(new SubItem(TextLabels.SAVE, IconLocations.SAVE));
-      essentials.addSubItem(new SubItem(TextLabels.RESET, IconLocations.RESET));
+      essentials.addSubItem(new SubItem(TextLabels.OPEN, IconLocations.OPEN, "Open"));
+      essentials.addSubItem(new SubItem(TextLabels.SAVE, IconLocations.SAVE, "Save"));
+      essentials.addSubItem(new SubItem(TextLabels.RESET, IconLocations.RESET, "Reset"));
     }
     return essentials;
   }
@@ -87,7 +87,7 @@ public class EditorView {
       filters.addSubItem(new SubItem(TextLabels.NEGATIVE, IconLocations.FILTER, "Negative"));
       filters.addSubItem(new SubItem(TextLabels.SEPIA, IconLocations.FILTER, "Sepia"));
       filters.addSubItem(new SubItem(TextLabels.BLUR, IconLocations.FILTER, "Blur"));
-      filters.addSubItem(new SubItem(TextLabels.EDGES, IconLocations.FILTER, "Edges")); 
+      filters.addSubItem(new SubItem(TextLabels.EDGES, IconLocations.FILTER, "Edges"));
     }
     return filters;
   }
@@ -116,13 +116,11 @@ public class EditorView {
           .addActionListener((ActionEvent e) -> controller.control(e.getActionCommand()));
   }
 
-  public void setIOController(EssentialsController controller) {
-    essentials.getSubItems().get(0).getButton()
-        .addActionListener((ActionEvent e) -> controller.open());
-    essentials.getSubItems().get(1).getButton()
-        .addActionListener((ActionEvent e) -> controller.save());
-    essentials.getSubItems().get(2).getButton()
-        .addActionListener((ActionEvent e) -> controller.reset());
+  public void setEssentialsController(EssentialsController controller) {
+    for (SubItem subItem : essentials.getSubItems()) {
+      subItem.getButton()
+          .addActionListener((ActionEvent e) -> controller.control(e.getActionCommand()));
+    }
   }
 
   public File showOpenChooser() {
