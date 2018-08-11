@@ -12,6 +12,7 @@ public class OperationController extends Controller {
     view.setOperationController(this);
   }
 
+  @Override
   public void control(String actionCommand) {
     for (Operation operation : OperationFactory.getAllOperations()) {
       if (operation.getName().equals(actionCommand)) {

@@ -1,19 +1,9 @@
 package com.maxicorrea.jbmp.controllers;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyZeroInteractions;
-import static org.mockito.Mockito.when;
-import java.io.File;
-import org.junit.Test;
-import com.maxicorrea.jbmp.models.core.Editor;
-import com.maxicorrea.jbmp.models.core.Image;
-import com.maxicorrea.jbmp.models.core.Pixel;
-import com.maxicorrea.jbmp.models.core.Size;
-import com.maxicorrea.jbmp.views.EditorView;
-
 public class EssentialsControllerTest {
 
+  /*
+  
   @Test
   public void shouldNotDoAnythingIfYouAreSentNullWhenOpening() {
     EditorView view = mock(EditorView.class);
@@ -114,5 +104,5 @@ public class EssentialsControllerTest {
     controller.reset();
     verify(model).resetEditedImage();
   }
-  
+  */
 }
