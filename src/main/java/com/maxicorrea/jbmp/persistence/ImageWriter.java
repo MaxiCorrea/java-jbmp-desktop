@@ -1,4 +1,4 @@
-package com.maxicorrea.jbmp.dataproviders;
+package com.maxicorrea.jbmp.persistence;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
