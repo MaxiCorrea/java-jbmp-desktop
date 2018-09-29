@@ -1,72 +1,81 @@
-package com.maxicorrea.jbmp.models.operations;
+package com.maxicorrea.jbmp.configuration;
 
-import com.maxicorrea.jbmp.models.core.Operation;
+import com.maxicorrea.jbmp.usecases.ApplyBlurUseCase;
+import com.maxicorrea.jbmp.usecases.ApplyEdgesUseCase;
+import com.maxicorrea.jbmp.usecases.ApplyGrayscaleUseCase;
+import com.maxicorrea.jbmp.usecases.ApplyHorizontalUseCase;
+import com.maxicorrea.jbmp.usecases.ApplyLeftUseCase;
+import com.maxicorrea.jbmp.usecases.ApplyNegativeUseCase;
+import com.maxicorrea.jbmp.usecases.ApplyRightUseCase;
+import com.maxicorrea.jbmp.usecases.ApplySepiaUseCase;
+import com.maxicorrea.jbmp.usecases.ApplyVerticalUseCase;
+import com.maxicorrea.jbmp.usecases.UseCase;
 
-public enum OperationType {
+public enum UseCaseType {
 
   GRAYSCALE {
     @Override
-    Operation getOperation() {
-      return new Grayscale();
+    UseCase create() {
+      return new ApplyGrayscaleUseCase();
     }
   },
 
   HORIZONTAL {
     @Override
-    Operation getOperation() {
-      return new Horizontal();
+    UseCase create() {
+      return new ApplyHorizontalUseCase();
     }
   },
 
   LEFT {
     @Override
-    Operation getOperation() {
-      return new Left();
+    UseCase create() {
+      return new ApplyLeftUseCase();
     }
   },
 
   NEGATIVE {
     @Override
-    Operation getOperation() {
-      return new Negative();
+    UseCase create() {
+      return new ApplyNegativeUseCase();
     }
   },
 
   RIGHT {
     @Override
-    Operation getOperation() {
-      return new Right();
+    UseCase create() {
+      return new ApplyRightUseCase();
     }
   },
 
   SEPIA {
     @Override
-    Operation getOperation() {
-      return new Sepia();
+    UseCase create() {
+      return new ApplySepiaUseCase();
     }
   },
 
   VERTICAL {
     @Override
-    Operation getOperation() {
-      return new Vertical();
+    UseCase create() {
+      return new ApplyVerticalUseCase();
     }
   },
   
   BLUR {
     @Override
-    Operation getOperation() {
-      return new Blur();
+    UseCase create() {
+      return new ApplyBlurUseCase();
     }
   },
   
   EDGES {
     @Override
-    Operation getOperation() {
-      return new Edges();
+    UseCase create() {
+      return new ApplyEdgesUseCase();
     }
   };
   
-  abstract Operation getOperation();
+  abstract UseCase create();
 
 }

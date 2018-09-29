@@ -1,11 +1,11 @@
-package com.maxicorrea.jbmp.views;
+package com.maxicorrea.jbmp.presentation;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import com.maxicorrea.jbmp.views.utils.ColorConstants;
-import com.maxicorrea.jbmp.views.utils.IconLoader;
+import com.maxicorrea.jbmp.presentation.utils.ColorConstants;
+import com.maxicorrea.jbmp.presentation.utils.IconLoader;
 
 public class SubItem extends JPanel {
 

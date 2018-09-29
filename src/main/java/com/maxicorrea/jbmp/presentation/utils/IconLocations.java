@@ -1,6 +1,6 @@
-package com.maxicorrea.jbmp.views.utils;
+package com.maxicorrea.jbmp.presentation.utils;
 
-import com.maxicorrea.jbmp.application.AppConfig;
+import com.maxicorrea.jbmp.configuration.AppConfig;
 
 public class IconLocations {
 

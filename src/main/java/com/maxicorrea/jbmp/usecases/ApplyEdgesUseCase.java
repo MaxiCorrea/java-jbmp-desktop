@@ -1,34 +1,28 @@
-package com.maxicorrea.jbmp.models.operations;
+package com.maxicorrea.jbmp.usecases;
 
-import com.maxicorrea.jbmp.models.core.Image;
-import com.maxicorrea.jbmp.models.core.Operation;
-import com.maxicorrea.jbmp.models.core.Pixel;
+import com.maxicorrea.jbmp.domain.Image;
+import com.maxicorrea.jbmp.requests.DataImageRequest;
+import com.maxicorrea.jbmp.responses.DataImageResponse;
 
-class Edges implements Operation {
+public class ApplyEdgesUseCase implements UseCase<DataImageResponse , DataImageRequest> {
 
   @Override
-  public Image apply(Image origin) {
-    Image result = new Image(origin.getSize());
-    final int ROWS = result.getSize().getHeight();
-    final int COLS = result.getSize().getWidth();
-    for (int currRow = 0; currRow < ROWS; ++currRow) {
-      for (int currCol = 0; currCol < COLS; ++currCol) {
-        if (result.inLimit(currRow, currCol)) {
-          result.setPixel(currRow, currCol, Pixel.BLACK);
-          continue;
-        }
-        double sumX = extractMethod1(origin, currRow, currCol);
-        double sumY = extractMethod2(origin, currRow, currCol);
-        int val = (int) Math.sqrt(sumX * sumX + sumY * sumY);
-        result.setPixel(currRow, currCol, new Pixel(val, val, val));
-      }
-    }
-    return result;
+  public DataImageResponse execute(DataImageRequest request) {
+    /*
+     * Image result = new Image(origin.getSize()); final int ROWS = result.getSize().getHeight();
+     * final int COLS = result.getSize().getWidth(); for (int currRow = 0; currRow < ROWS;
+     * ++currRow) { for (int currCol = 0; currCol < COLS; ++currCol) { if (result.inLimit(currRow,
+     * currCol)) { result.setPixel(currRow, currCol, Pixel.BLACK); continue; } double sumX =
+     * extractMethod1(origin, currRow, currCol); double sumY = extractMethod2(origin, currRow,
+     * currCol); int val = (int) Math.sqrt(sumX * sumX + sumY * sumY); result.setPixel(currRow,
+     * currCol, new Pixel(val, val, val)); } }
+     */
+    return null;
   }
 
   static int[][] kernelX = {{-1, 0, 1}, {-2, 0, 2}, {-1, 0, 1}};
 
-  private int extractMethod2(Image origin, int currRow, int currCol) {
+  int extractMethod2(Image origin, int currRow, int currCol) {
     return origin.getPixel(currRow - 1, currCol - 1).getRed() * kernelY[0][0]
         + origin.getPixel(currRow - 1, currCol).getRed() * kernelY[0][1]
         + origin.getPixel(currRow - 1, currCol + 1).getRed() * kernelY[0][2]
@@ -42,7 +36,7 @@ class Edges implements Operation {
 
   static int[][] kernelY = {{1, 2, 1}, {0, 0, 0}, {-1, -2, -1}};
 
-  private int extractMethod1(Image origin, int currRow, int currCol) {
+  int extractMethod1(Image origin, int currRow, int currCol) {
     return origin.getPixel(currRow - 1, currCol - 1).getRed() * kernelX[0][0]
         + origin.getPixel(currRow - 1, currCol).getRed() * kernelX[0][1]
         + origin.getPixel(currRow - 1, currCol + 1).getRed() * kernelX[0][2]

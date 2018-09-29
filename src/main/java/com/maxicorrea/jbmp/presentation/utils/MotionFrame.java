@@ -1,4 +1,4 @@
-package com.maxicorrea.jbmp.views.utils;
+package com.maxicorrea.jbmp.presentation.utils;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -15,8 +15,8 @@ import javax.swing.JLabel;
 public class MotionFrame extends JLabel {
 
   private static final long serialVersionUID = 1L;
-  static final Icon MINI_ICON = IconLoader.load(IconLocations.MINI);
-  static final Icon CLOSE_ICON = IconLoader.load(IconLocations.CLOSE);
+  public static final Icon MINI_ICON = IconLoader.load(IconLocations.MINI);
+  public static final Icon CLOSE_ICON = IconLoader.load(IconLocations.CLOSE);
 
   private Point p1;
   private Point p2;
@@ -56,7 +56,7 @@ public class MotionFrame extends JLabel {
     });
   }
 
-  JLabel getLabelClose() {
+  public JLabel getLabelClose() {
     if (close == null) {
       close = new JLabel();
       close.setIcon(CLOSE_ICON);
@@ -71,12 +71,12 @@ public class MotionFrame extends JLabel {
     return close;
   }
 
-  void closeFrame() {
+  public void closeFrame() {
     mainFrame.setVisible(false);
     mainFrame.dispose();
   }
 
-  JLabel getLabelMini() {
+  public JLabel getLabelMini() {
     if (mini == null) {
       mini = new JLabel();
       mini.setIcon(MINI_ICON);
@@ -90,7 +90,7 @@ public class MotionFrame extends JLabel {
     return mini;
   }
 
-  void iconifiedFrame() {
+  public void iconifiedFrame() {
     mainFrame.setState(JFrame.ICONIFIED);
   }
 

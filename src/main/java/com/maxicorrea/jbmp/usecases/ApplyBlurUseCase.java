@@ -1,24 +1,26 @@
-package com.maxicorrea.jbmp.models.operations;
+package com.maxicorrea.jbmp.usecases;
 
-import com.maxicorrea.jbmp.models.core.Image;
-import com.maxicorrea.jbmp.models.core.Operation;
-import com.maxicorrea.jbmp.models.core.Pixel;
+import com.maxicorrea.jbmp.domain.Image;
+import com.maxicorrea.jbmp.domain.Pixel;
+import com.maxicorrea.jbmp.domain.Size;
+import com.maxicorrea.jbmp.requests.DataImageRequest;
+import com.maxicorrea.jbmp.requests.DataPixelRequest;
+import com.maxicorrea.jbmp.responses.DataImageResponse;
 
-class Blur implements Operation {
+public class ApplyBlurUseCase implements UseCase<DataImageResponse , DataImageRequest> {
 
   static final int[] X_DIRECTIONS = {-1, 1, -1, 1, 0, 0, -1, 1};
   static final int[] Y_DIRECTIONS = {-1, 1, 1, -1, 1, -1, 0, 0};
   static final int NEIGHBORHOOD = 8;
-
+  
   @Override
-  public Image apply(Image origin) {
-    Image result = new Image(origin.getSize());
-    final int ROWS = result.getSize().getHeight();
-    final int COLS = result.getSize().getWidth();
-    for (int currentRow = 0; currentRow < ROWS; ++currentRow) {
-      for (int currentCol = 0; currentCol < COLS; ++currentCol) {
+  public DataImageResponse execute(DataImageRequest request) {
+    Image result = new Image(new Size(request.height , request.width));
+    for (int currentRow = 0; currentRow < request.height; ++currentRow) {
+      for (int currentCol = 0; currentCol < request.width; ++currentCol) {
+        DataPixelRequest dpr = request.pixels[currentRow][currentCol];
+        Pixel px = new Pixel(dpr.red , dpr.green , dpr.blue);
         if (result.inLimit(currentRow, currentCol)) {
-          Pixel px = new Pixel(origin.getPixel(currentRow, currentCol));
           result.setPixel(currentRow, currentCol, px);
           continue;
         }
@@ -28,16 +30,14 @@ class Blur implements Operation {
         for (int idx = 0; idx < NEIGHBORHOOD; ++idx) {
           int row = currentRow + X_DIRECTIONS[idx];
           int col = currentCol + Y_DIRECTIONS[idx];
-          Pixel px = origin.getPixel(row, col);
-          sumRed += px.getRed();
-          sumGreen += px.getGreen();
-          sumBlue += px.getBlue();
+          sumRed += request.pixels[row][col].red;
+          sumGreen += request.pixels[row][col].green;
+          sumBlue += request.pixels[row][col].blue;
         }
-        Pixel px = new Pixel(sumRed / 9, sumGreen / 9, sumBlue / 9);
-        result.setPixel(currentRow, currentCol, px);
+        result.setPixel(currentRow, currentCol, new Pixel(sumRed / 9, sumGreen / 9, sumBlue / 9));
       }
     }
-    return result;
+    return new DataImageResponse(result);
   }
 
   @Override

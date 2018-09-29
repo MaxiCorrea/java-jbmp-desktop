@@ -1,4 +1,4 @@
-package com.maxicorrea.jbmp.io;
+package com.maxicorrea.jbmp.dataproviders;
 
 final class BmpConstants {
 

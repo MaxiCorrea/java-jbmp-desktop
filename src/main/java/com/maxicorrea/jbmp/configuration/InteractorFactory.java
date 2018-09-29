@@ -1,19 +1,19 @@
-package com.maxicorrea.jbmp.models.operations;
+package com.maxicorrea.jbmp.configuration;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.maxicorrea.jbmp.models.core.Operation;
+import com.maxicorrea.jbmp.usecases.UseCase;
 
-public class OperationFactory {
+public class InteractorFactory {
 
-  private OperationFactory() {
+  private InteractorFactory() {
     throw new AssertionError();
   }
   
-  public static List<Operation> getAllOperations() {
-    List<Operation> operations = new ArrayList<>();
-    for(OperationType type : OperationType.values()) {
-      operations.add(type.getOperation());
+  public static List<UseCase> getAllOperations() {
+    List<UseCase> operations = new ArrayList<>();
+    for(UseCaseType type : UseCaseType.values()) {
+      operations.add(type.create());
     }
     return operations;
   }

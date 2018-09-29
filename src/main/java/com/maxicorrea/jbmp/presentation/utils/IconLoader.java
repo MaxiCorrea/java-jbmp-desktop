@@ -1,4 +1,4 @@
-package com.maxicorrea.jbmp.views.utils;
+package com.maxicorrea.jbmp.presentation.utils;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;

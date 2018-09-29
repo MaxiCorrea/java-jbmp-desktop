@@ -1,4 +1,4 @@
-package com.maxicorrea.jbmp.application;
+package com.maxicorrea.jbmp.configuration;
 
 import java.io.File;
 import java.io.FileInputStream;

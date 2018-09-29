@@ -1,4 +1,4 @@
-package com.maxicorrea.jbmp.application;
+package com.maxicorrea.jbmp.configuration;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -6,14 +6,8 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
-import com.maxicorrea.jbmp.controllers.EssentialsController;
-import com.maxicorrea.jbmp.controllers.OpenController;
-import com.maxicorrea.jbmp.controllers.OperationController;
-import com.maxicorrea.jbmp.controllers.ResetController;
-import com.maxicorrea.jbmp.controllers.SaveController;
-import com.maxicorrea.jbmp.models.core.Editor;
-import com.maxicorrea.jbmp.views.EditorView;
-import com.maxicorrea.jbmp.views.ImageView;
+import com.maxicorrea.jbmp.presentation.EditorView;
+import com.maxicorrea.jbmp.presentation.ImageView;
 
 public class Application {
 
@@ -26,17 +20,18 @@ public class Application {
         log.log(Level.INFO, "No NimbusLookAndFeel");
       }
       EditorView view = new EditorView(new ImageView());
-      initializeApp(new Editor(), view);
+      //initializeApp(new Editor(), view);
       view.show();
     });
   }
 
-  static void initializeApp(Editor model, EditorView view) {
+  /*
+  public static void initializeApp(Editor model, EditorView view) {
     model.addObserver(view.getImageView());
     OpenController openController = new OpenController(view, model,
         new ResetController(view, model, new SaveController(view, model)));
     new EssentialsController(view, model ,openController);
     new OperationController(view, model);
-  }
+  }*/
 
 }

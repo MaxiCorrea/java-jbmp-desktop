@@ -1,4 +1,4 @@
-package com.maxicorrea.jbmp.views;
+package com.maxicorrea.jbmp.presentation;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -8,11 +8,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import com.maxicorrea.jbmp.models.core.Image;
-import com.maxicorrea.jbmp.models.core.Observer;
-import com.maxicorrea.jbmp.views.utils.ColorConstants;
+import com.maxicorrea.jbmp.domain.Image;
+import com.maxicorrea.jbmp.presentation.utils.ColorConstants;
 
-public class ImageView extends JPanel implements Observer {
+public class ImageView extends JPanel {
   private static final long serialVersionUID = 1L;
   private static final int SLEEP = 4_000;
 
@@ -43,7 +42,7 @@ public class ImageView extends JPanel implements Observer {
     return panel;
   }
 
-  void showErrorMessage(String message) {
+  public void showErrorMessage(String message) {
     new Thread(() -> {
       try {
         messageLabel(Color.RED, Color.WHITE, true, message);
@@ -56,7 +55,7 @@ public class ImageView extends JPanel implements Observer {
     }).start();
   }
 
-  void showMessage(String message) {
+  public void showMessage(String message) {
     new Thread(() -> {
       try {
         messageLabel(Color.GREEN, Color.WHITE, true, message);
@@ -69,14 +68,14 @@ public class ImageView extends JPanel implements Observer {
     }).start();
   }
 
-  void messageLabel(Color back, Color fore, boolean opaque, String message) {
+  public void messageLabel(Color back, Color fore, boolean opaque, String message) {
     getMessageLabel().setBackground(back);
     getMessageLabel().setForeground(fore);
     getMessageLabel().setOpaque(opaque);
     getMessageLabel().setText(message);
   }
 
-  JScrollPane getImgPane() {
+  public JScrollPane getImgPane() {
     JScrollPane pane = new JScrollPane(getImageLabel());
     pane.setBorder(null);
     pane.getVerticalScrollBar().setPreferredSize(new Dimension(5, 0));
@@ -86,7 +85,7 @@ public class ImageView extends JPanel implements Observer {
     return pane;
   }
 
-  JLabel getMessageLabel() {
+  public JLabel getMessageLabel() {
     if (imgMessage == null) {
       imgMessage = new JLabel("", JLabel.CENTER);
       imgMessage.setPreferredSize(new Dimension(200, 25));
@@ -94,14 +93,13 @@ public class ImageView extends JPanel implements Observer {
     return imgMessage;
   }
 
-  JLabel getImageLabel() {
+  public JLabel getImageLabel() {
     if (imgLabel == null) {
       imgLabel = new JLabel();
     }
     return imgLabel;
   }
 
-  @Override
   public void update(Image image) {
     imgLabel.setIcon(new ImageIcon(transform(image)));
   }

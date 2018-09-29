@@ -1,4 +1,4 @@
-package com.maxicorrea.jbmp.views;
+package com.maxicorrea.jbmp.presentation;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
-import com.maxicorrea.jbmp.views.utils.ColorConstants;
+import com.maxicorrea.jbmp.presentation.utils.ColorConstants;
 
 public class Item extends JPanel {
 
@@ -31,14 +31,14 @@ public class Item extends JPanel {
     });
   }
 
-  void pressedAction(TitleItem titleItem) {
+  public void pressedAction(TitleItem titleItem) {
     titleItem.arrowUp();
     for (SubItem subItem : subItems) {
       subItem.setVisible(true);
     }
   }
 
-  void notPressedAction(TitleItem titleItem) {
+  public void notPressedAction(TitleItem titleItem) {
     titleItem.arrowDown();
     for (SubItem subItem : subItems) {
       subItem.setVisible(false);

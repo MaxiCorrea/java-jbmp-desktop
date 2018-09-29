@@ -1,15 +1,13 @@
-package com.maxicorrea.jbmp.models.operations;
+package com.maxicorrea.jbmp.usecases;
 
-import com.maxicorrea.jbmp.models.core.Image;
-import com.maxicorrea.jbmp.models.core.Operation;
-import com.maxicorrea.jbmp.models.core.Pixel;
-import com.maxicorrea.jbmp.models.core.Size;
+import com.maxicorrea.jbmp.requests.DataImageRequest;
+import com.maxicorrea.jbmp.responses.DataImageResponse;
 
-class Right implements Operation {
+public class ApplyRightUseCase implements UseCase<DataImageResponse , DataImageRequest>  {
 
   @Override
-  public Image apply(Image origin) {
-    Image result = new Image(Size.invert(origin.getSize()));
+  public DataImageResponse execute(DataImageRequest request) {
+    /*Image result = new Image(Size.invert(origin.getSize()));
     final int ROWS = result.getSize().getHeight();
     final int COLS = result.getSize().getWidth();
     for (int currentRow = 0; currentRow < ROWS; ++currentRow) {
@@ -17,13 +15,17 @@ class Right implements Operation {
         Pixel pixel = new Pixel(origin.getPixel(COLS - 1 - currentCol, currentRow));
         result.setPixel(currentRow, currentCol, pixel);
       }
-    }
-    return result;
+    }*/
+    return null;
   }
 
   @Override
   public String getName() {
     return "Right";
+  }
+  
+  public DataImageResponse x(DataImageRequest request) {  
+    return null;
   }
 
 }

@@ -1,12 +1,12 @@
-package com.maxicorrea.jbmp.io;
+package com.maxicorrea.jbmp.dataproviders;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import com.maxicorrea.jbmp.models.core.Image;
-import com.maxicorrea.jbmp.models.core.Pixel;
-import com.maxicorrea.jbmp.models.core.Size;
+import com.maxicorrea.jbmp.domain.Image;
+import com.maxicorrea.jbmp.domain.Pixel;
+import com.maxicorrea.jbmp.domain.Size;
 
 public final class ImageWriter {
 

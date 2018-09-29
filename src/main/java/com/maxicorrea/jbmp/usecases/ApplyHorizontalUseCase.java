@@ -1,23 +1,26 @@
-package com.maxicorrea.jbmp.models.operations;
+package com.maxicorrea.jbmp.usecases;
 
-import com.maxicorrea.jbmp.models.core.Image;
-import com.maxicorrea.jbmp.models.core.Operation;
-import com.maxicorrea.jbmp.models.core.Pixel;
-import com.maxicorrea.jbmp.models.core.Size;
+import com.maxicorrea.jbmp.domain.Image;
+import com.maxicorrea.jbmp.domain.Pixel;
+import com.maxicorrea.jbmp.domain.Size;
+import com.maxicorrea.jbmp.requests.DataImageRequest;
+import com.maxicorrea.jbmp.requests.DataPixelRequest;
+import com.maxicorrea.jbmp.responses.DataImageResponse;
 
-class Horizontal implements Operation {
+public class ApplyHorizontalUseCase implements UseCase<DataImageResponse , DataImageRequest> {
 
   @Override
-  public Image apply(Image image) {
-    Image result = new Image(image.getSize());
+  public DataImageResponse execute(DataImageRequest request) {
+    Image result = new Image(new Size(request.height, request.width));
     Size size = result.getSize();
     for (int row = 0; row < size.getHeight(); ++row) {
       for (int col = 0; col < size.getWidth(); ++col) {
-        Pixel pixel = image.getPixel(row , col);
-        result.setPixel(row, image.getSize().getWidth() - 1 - col , pixel);
+        DataPixelRequest dpx = request.pixels[row][col];
+        Pixel pixel = new Pixel(dpx.red, dpx.green, dpx.blue);
+        result.setPixel(row, size.getWidth() - 1 - col , pixel);
       }
     }
-    return result;
+    return new DataImageResponse(result);
   }
 
   @Override

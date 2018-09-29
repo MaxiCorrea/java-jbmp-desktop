@@ -1,4 +1,4 @@
-package com.maxicorrea.jbmp.models.core;
+package com.maxicorrea.jbmp.domain;
 
 public final class Pixel {
 

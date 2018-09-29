@@ -1,4 +1,4 @@
-package com.maxicorrea.jbmp.io;
+package com.maxicorrea.jbmp.dataproviders;
 
 public class BmpOutputException extends Exception {
   

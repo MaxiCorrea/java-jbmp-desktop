@@ -1,4 +1,4 @@
-package com.maxicorrea.jbmp.views;
+package com.maxicorrea.jbmp.presentation;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -7,15 +7,15 @@ import java.awt.event.MouseListener;
 import javax.swing.Icon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import com.maxicorrea.jbmp.views.utils.ColorConstants;
-import com.maxicorrea.jbmp.views.utils.IconLoader;
-import com.maxicorrea.jbmp.views.utils.IconLocations;
+import com.maxicorrea.jbmp.presentation.utils.ColorConstants;
+import com.maxicorrea.jbmp.presentation.utils.IconLoader;
+import com.maxicorrea.jbmp.presentation.utils.IconLocations;
 
 public class TitleItem extends JPanel {
 
   private static final long serialVersionUID = 1L;
-  static final Icon ARROW_DOWN_ICON = IconLoader.load(IconLocations.ARROW_DOWN);
-  static final Icon ARROW_UP_ICON = IconLoader.load(IconLocations.ARROW_UP);
+  public static final Icon ARROW_DOWN_ICON = IconLoader.load(IconLocations.ARROW_DOWN);
+  public static final Icon ARROW_UP_ICON = IconLoader.load(IconLocations.ARROW_UP);
 
   private JLabel titleLabel;
   private JLabel arrowLabel;
@@ -37,11 +37,11 @@ public class TitleItem extends JPanel {
     add(line, BorderLayout.SOUTH);
   }
 
-  JLabel getTitleLabel() {
+  public JLabel getTitleLabel() {
     return titleLabel;
   }
 
-  JLabel getArrowLabel() {
+  public JLabel getArrowLabel() {
     return arrowLabel;
   }
 

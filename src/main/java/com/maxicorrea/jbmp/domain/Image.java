@@ -1,4 +1,4 @@
-package com.maxicorrea.jbmp.models.core;
+package com.maxicorrea.jbmp.domain;
 
 import java.util.Arrays;
 
@@ -12,7 +12,7 @@ public final class Image {
     pixels = new Pixel[size.getHeight()][size.getWidth()];
   }
 
-  Image(Image other) {
+  public Image(Image other) {
     size = new Size(other.getSize());
     pixels = new Pixel[size.getHeight()][size.getWidth()];
     for (int row = 0; row < size.getHeight(); ++row) {

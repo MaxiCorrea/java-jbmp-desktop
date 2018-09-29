@@ -1,9 +1,8 @@
-package com.maxicorrea.jbmp.views;
+package com.maxicorrea.jbmp.presentation;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
 import java.io.File;
 import javax.swing.BoxLayout;
 import javax.swing.JFileChooser;
@@ -11,12 +10,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import com.maxicorrea.jbmp.controllers.EssentialsController;
-import com.maxicorrea.jbmp.controllers.OperationController;
-import com.maxicorrea.jbmp.views.utils.ColorConstants;
-import com.maxicorrea.jbmp.views.utils.IconLocations;
-import com.maxicorrea.jbmp.views.utils.MotionFrame;
-import com.maxicorrea.jbmp.views.utils.TextLabels;
+import com.maxicorrea.jbmp.presentation.utils.ColorConstants;
+import com.maxicorrea.jbmp.presentation.utils.IconLocations;
+import com.maxicorrea.jbmp.presentation.utils.MotionFrame;
+import com.maxicorrea.jbmp.presentation.utils.TextLabels;
 
 public class EditorView {
 
@@ -70,7 +67,7 @@ public class EditorView {
     return pane;
   }
 
-  Item getEssentialItems() {
+  public Item getEssentialItems() {
     if (essentials == null) {
       essentials = new Item(new TitleItem(TextLabels.TITLE_ESSENTIAL));
       essentials.addSubItem(new SubItem(TextLabels.OPEN, IconLocations.OPEN, "Open"));
@@ -80,7 +77,7 @@ public class EditorView {
     return essentials;
   }
 
-  Item getFilterItems() {
+  public Item getFilterItems() {
     if (filters == null) {
       filters = new Item(new TitleItem(TextLabels.TITLE_FILTER));
       filters.addSubItem(new SubItem(TextLabels.GRAYSCALE, IconLocations.FILTER, "Grayscale"));
@@ -92,7 +89,7 @@ public class EditorView {
     return filters;
   }
 
-  Item getFlipItems() {
+  public Item getFlipItems() {
     if (flips == null) {
       flips = new Item(new TitleItem(TextLabels.TITLE_FLIP));
       flips.addSubItem(new SubItem(TextLabels.VERTICAL, IconLocations.VERTICAL, "Vertical"));
@@ -106,22 +103,17 @@ public class EditorView {
   public void show() {
     mainFrame.setVisible(true);
   }
-
-  public void setOperationController(OperationController controller) {
-    for (SubItem subItem : filters.getSubItems())
-      subItem.getButton()
-          .addActionListener((ActionEvent e) -> controller.control(e.getActionCommand()));
-    for (SubItem subItem : flips.getSubItems())
-      subItem.getButton()
-          .addActionListener((ActionEvent e) -> controller.control(e.getActionCommand()));
-  }
-
-  public void setEssentialsController(EssentialsController controller) {
-    for (SubItem subItem : essentials.getSubItems()) {
-      subItem.getButton()
-          .addActionListener((ActionEvent e) -> controller.control(e.getActionCommand()));
-    }
-  }
+  /*
+   * public void setOperationController(OperationController controller) { for (SubItem subItem :
+   * filters.getSubItems()) subItem.getButton() .addActionListener((ActionEvent e) ->
+   * controller.control(e.getActionCommand())); for (SubItem subItem : flips.getSubItems())
+   * subItem.getButton() .addActionListener((ActionEvent e) ->
+   * controller.control(e.getActionCommand())); }
+   * 
+   * public void setEssentialsController(EssentialsController controller) { for (SubItem subItem :
+   * essentials.getSubItems()) { subItem.getButton() .addActionListener((ActionEvent e) ->
+   * controller.control(e.getActionCommand())); } }
+   */
 
   public File showOpenChooser() {
     JFileChooser chooser = new JFileChooser();
