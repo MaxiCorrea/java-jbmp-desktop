@@ -24,7 +24,7 @@ public class AppConfig {
       System.exit(-1);
     }
   }
-  
+
   public static final String url(String key) {
     return URL.get(key);
   }
@@ -32,5 +32,5 @@ public class AppConfig {
   private AppConfig() {
     throw new AssertionError();
   }
-  
+
 }

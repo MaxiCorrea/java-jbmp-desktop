@@ -2,18 +2,18 @@ package com.maxicorrea.jbmp.usecases;
 
 import com.maxicorrea.jbmp.domain.Image;
 
-public class OpenImageUseCase implements UseCase {
+public class ResetUseCase implements UseCase {
 
-  public OpenImageUseCase(Image image) {}
+  public ResetUseCase(Image image) {
 
+  }
 
   public void execute() {
 
   }
 
-
   public String getName() {
-    return "Open";
+    return "Reset";
   }
 
 }

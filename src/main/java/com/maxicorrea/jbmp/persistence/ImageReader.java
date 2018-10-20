@@ -28,7 +28,7 @@ public final class ImageReader {
     if (BmpConstants.CHARACTER_M != bi.read()) {
       throw new IOException();
     }
-    if(bi.skip(BmpConstants.UNUSED) < 0) {
+    if (bi.skip(BmpConstants.UNUSED) < 0) {
       throw new IOException();
     }
     if (BmpConstants.START_OF_BMP_DATA != readInt(bi)) {
@@ -52,7 +52,7 @@ public final class ImageReader {
     if (BmpConstants.COMPRESSION != readInt(bi)) {
       throw new IOException();
     }
-    if(bi.skip(BmpConstants.IGNORED) < 0) {
+    if (bi.skip(BmpConstants.IGNORED) < 0) {
       throw new IOException();
     }
     return size;
@@ -64,7 +64,7 @@ public final class ImageReader {
     byte[] bytes = new byte[3];
     for (int i = size.getHeight() - 1; i >= 0; i--) {
       for (int j = 0; j < size.getWidth(); j++) {
-        if(bi.read(bytes) == -1) {
+        if (bi.read(bytes) == -1) {
           throw new IOException();
         }
         int r = bytes[2] & 0xFF;

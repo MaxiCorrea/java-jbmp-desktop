@@ -33,14 +33,13 @@ public final class Image {
   }
 
   public boolean inLimit(int row, int col) {
-    return row == 0 || row == size.getHeight() - 1 ||
-           col == 0 || col == size.getWidth() - 1; 
+    return row == 0 || row == size.getHeight() - 1 || col == 0 || col == size.getWidth() - 1;
   }
 
   public Size getSize() {
     return size;
   }
-  
+
   @Override
   public int hashCode() {
     final int prime = 31;

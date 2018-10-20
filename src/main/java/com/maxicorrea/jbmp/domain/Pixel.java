@@ -5,8 +5,8 @@ public final class Pixel {
   public static final int MAX_VALUE = 255;
   public static final int MIN_VALUE = 0;
 
-  public static final Pixel BLACK = new Pixel(0,0,0);
-  
+  public static final Pixel BLACK = new Pixel(0, 0, 0);
+
   public static Pixel averageOfChannels(Pixel pixel) {
     int average = (pixel.red + pixel.green + pixel.blue) / 3;
     return new Pixel(average, average, average);

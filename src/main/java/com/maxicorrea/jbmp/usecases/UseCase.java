@@ -1,9 +1,9 @@
 package com.maxicorrea.jbmp.usecases;
 
-public interface UseCase<Response , Request> {
+public interface UseCase {
 
-  Response execute(Request request);
-  
+  void execute();
+
   String getName();
-  
+
 }
