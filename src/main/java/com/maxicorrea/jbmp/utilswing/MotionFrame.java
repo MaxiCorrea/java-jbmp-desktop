@@ -15,11 +15,13 @@ import javax.swing.JLabel;
 public class MotionFrame extends JLabel {
 
   private static final long serialVersionUID = 1L;
+  public static final Icon QUES_ICON = IconLoader.load(IconLocations.QUESTION);
   public static final Icon MINI_ICON = IconLoader.load(IconLocations.MINI_ICON);
   public static final Icon CLOSE_ICON = IconLoader.load(IconLocations.CLOSE_ICON);
 
   private Point p1;
   private Point p2;
+  private JLabel ques;
   private JLabel mini;
   private JLabel close;
   private JFrame mainFrame;
@@ -30,6 +32,7 @@ public class MotionFrame extends JLabel {
     mainFrame.setTitle(TextLabels.APP_TITLE);
     setForeground(Color.WHITE);
     setLayout(new FlowLayout(FlowLayout.RIGHT));
+    add(getLabelQuestion());
     add(getLabelMini());
     add(getLabelClose());
     setPreferredSize(new Dimension(990, 40));
@@ -90,6 +93,21 @@ public class MotionFrame extends JLabel {
     return mini;
   }
 
+  public JLabel getLabelQuestion() {
+    if(ques ==  null) {
+      ques = new JLabel();
+      ques.setToolTipText("About");
+      ques.setIcon(QUES_ICON);
+      ques.addMouseListener(new MouseAdapter() {
+        @Override
+        public void mousePressed(MouseEvent e) {
+          Dialog.showAboutDialog(mainFrame);
+        }
+      });
+    }
+    return ques;
+  }
+  
   public void iconifiedFrame() {
     mainFrame.setState(JFrame.ICONIFIED);
   }

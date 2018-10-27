@@ -18,6 +18,7 @@
   <entry key="rotateleft">/images/rotate_left.png</entry>
   <entry key="rotateright">/images/rotate_right.png</entry>
   <entry key="savefile">/images/save_file.png</entry>   
+  <entry key="question">/images/question.png</entry>   
 </properties>
 
 

@@ -20,6 +20,7 @@ public class IconLocations {
   public static final String HORIZONTAL_ICON = url("fliphorizontal");
   public static final String OPEN_ICON = url("openfile");
   public static final String SAVE_ICON = url("savefile");
+  public static final String QUESTION = url("question");
 
   private IconLocations() {
     throw new AssertionError("IconLocations is a utility class.");

@@ -14,7 +14,12 @@ public class Dialog extends JDialog {
 
   private static Dialog alectDialog;
   private static Dialog errorDialog;
-
+  private static Dialog AboutDialog;
+  
+  public static void showAboutDialog(JFrame mainFrame) {
+    
+  }
+  
   public static void showAlertDialog(String message, JFrame parent) {
     if (alectDialog == null) {
       alectDialog = new Dialog("path");
