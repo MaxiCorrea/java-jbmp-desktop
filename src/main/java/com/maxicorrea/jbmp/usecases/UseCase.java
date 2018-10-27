@@ -4,6 +4,4 @@ public interface UseCase {
 
   void execute();
 
-  String getName();
-
 }

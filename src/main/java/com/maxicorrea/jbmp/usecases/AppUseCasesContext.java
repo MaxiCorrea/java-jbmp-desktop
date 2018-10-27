@@ -1,7 +1,5 @@
 package com.maxicorrea.jbmp.usecases;
 
-import com.maxicorrea.jbmp.domain.Image;
-
 public class AppUseCasesContext {
 
   public static UseCase applyBlurUseCase;
@@ -28,19 +26,19 @@ public class AppUseCasesContext {
 
   public static UseCase saveImageUseCase;
 
-  public AppUseCasesContext(Image image) {
-    applyBlurUseCase = new BlurUseCase(image);
-    applyEdgesUseCase = new EdgesUseCase(image);
-    applyGrayscaleUseCase = new GrayscaleUseCase(image);
-    applyHorizontalUseCase = new HorizontalUseCase(image);
-    applyLeftUseCase = new LeftUseCase(image);
-    applyNegativeUseCase = new NegativeUseCase(image);
-    applyResetUseCase = new ResetUseCase(image);
-    applyRightUseCase = new RightUseCase(image);
-    applySepiaUseCase = new SepiaUseCase(image);
-    applyVerticalUseCase = new VerticalUseCase(image);
-    openImageUseCase = new OpenImageUseCase(image);
-    saveImageUseCase = new SaveUseCase(image);
+  public AppUseCasesContext() {
+    applyBlurUseCase = new BlurUseCase();
+    applyEdgesUseCase = new EdgesUseCase();
+    applyGrayscaleUseCase = new GrayscaleUseCase();
+    applyHorizontalUseCase = new HorizontalUseCase();
+    applyLeftUseCase = new LeftUseCase();
+    applyNegativeUseCase = new NegativeUseCase();
+    applyResetUseCase = new ResetUseCase();
+    applyRightUseCase = new RightUseCase();
+    applySepiaUseCase = new SepiaUseCase();
+    applyVerticalUseCase = new VerticalUseCase();
+    openImageUseCase = new OpenImageUseCase();
+    saveImageUseCase = new SaveUseCase();
   }
 
 }

@@ -6,4 +6,6 @@ public interface ImageView {
 
   void updateImage(Image image);
 
+  Image getImage();
+  
 }

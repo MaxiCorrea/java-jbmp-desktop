@@ -1,25 +1,21 @@
 package com.maxicorrea.jbmp.usecases;
 
 import com.maxicorrea.jbmp.domain.Image;
+import com.maxicorrea.jbmp.domain.Pixel;
+import com.maxicorrea.jbmp.presentation.AppViewContext;
 
 public class GrayscaleUseCase implements UseCase {
 
-  public GrayscaleUseCase(Image image) {
-
-  }
-
   public void execute() {
-    /*
-     * image = new Image(new Size(request.height, request.width)); for (int currentRow = 0;
-     * currentRow < request.height; ++currentRow) { for (int currentCol = 0; currentCol <
-     * request.width; ++currentCol) { DataPixelRequest dpx = request.pixels[currentRow][currentCol];
-     * Pixel pixel = new Pixel(dpx.red, dpx.green, dpx.blue); image.setPixel(currentRow, currentCol,
-     * Pixel.averageOfChannels(pixel)); } } ViewContext.imageView.updateImage(image);
-     */
-  }
-
-  public String getName() {
-    return "Grayscale";
+    Image image = AppViewContext.imageView.getImage();
+    Image resut = new Image(image.getSize());
+    for (int row = 0; row < resut.getSize().getHeight(); ++row) {
+      for (int col = 0; col < resut.getSize().getWidth(); ++col) {
+        Pixel pixel = image.getPixel(row, col);
+        resut.setPixel(row, col, Pixel.averageOfChannels(pixel));
+      }
+    }
+    AppViewContext.imageView.updateImage(resut);
   }
 
 }

@@ -42,13 +42,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import com.maxicorrea.jbmp.presentation.AppView;
 import com.maxicorrea.jbmp.presentation.AppViewContext;
 import com.maxicorrea.jbmp.usecases.AppUseCasesContext;
 import com.maxicorrea.jbmp.utilswing.Item;
 import com.maxicorrea.jbmp.utilswing.MotionFrame;
 import com.maxicorrea.jbmp.utilswing.TitleItem;
 
-public class AppViewSwing {
+public class AppViewSwing implements AppView {
 
   static final int FRAME_WIDTH = 990;
   static final int FRAME_HEIGHT = 580;
@@ -149,6 +150,7 @@ public class AppViewSwing {
   }
 
   public void initializeViews() {
+    AppViewContext.appView = this;
     AppViewContext.imageView = imageView;
     AppViewContext.openView = open;
     AppViewContext.saveView = save;
@@ -183,24 +185,6 @@ public class AppViewSwing {
     mainFrame.setVisible(true);
   }
 
-  public File showOpenChooser() {
-    JFileChooser chooser = new JFileChooser();
-    chooser.setFileFilter(new FileNameExtensionFilter("imagen BMP", "bmp"));
-    if (chooser.showOpenDialog(mainFrame) == 0) {
-      return chooser.getSelectedFile();
-    }
-    return null;
-  }
-
-  public File showSaveChooser() {
-    JFileChooser chooser = new JFileChooser();
-    chooser.setFileFilter(new FileNameExtensionFilter("imagen BMP", "bmp"));
-    if (chooser.showSaveDialog(mainFrame) == 0) {
-      return chooser.getSelectedFile();
-    }
-    return null;
-  }
-
   public void showMessage(String message) {
     imageView.showMessage(message);
   }
@@ -213,4 +197,38 @@ public class AppViewSwing {
     return imageView;
   }
 
+  @Override
+  public File getOpenFile() {
+    return showOpenChooser();
+  }
+
+  private File showOpenChooser() {
+    JFileChooser chooser = new JFileChooser();
+    chooser.setFileFilter(new FileNameExtensionFilter("imagen BMP", "bmp"));
+    if (chooser.showOpenDialog(mainFrame) == 0) {
+      return chooser.getSelectedFile();
+    }
+    return null;
+  }
+  
+  @Override
+  public File getSaveFile() {
+    return showSaveChooser();
+  }
+
+  private File showSaveChooser() {
+    JFileChooser chooser = new JFileChooser();
+    chooser.setFileFilter(new FileNameExtensionFilter("imagen BMP", "bmp"));
+    if (chooser.showSaveDialog(mainFrame) == 0) {
+      return chooser.getSelectedFile();
+    }
+    return null;
+  }
+
+  @Override
+  public void showError(String string) {
+    // TODO Auto-generated method stub
+    
+  }
+  
 }

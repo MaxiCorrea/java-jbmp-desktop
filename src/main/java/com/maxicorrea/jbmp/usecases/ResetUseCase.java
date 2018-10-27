@@ -1,19 +1,19 @@
 package com.maxicorrea.jbmp.usecases;
 
 import com.maxicorrea.jbmp.domain.Image;
+import com.maxicorrea.jbmp.presentation.AppViewContext;
 
 public class ResetUseCase implements UseCase {
 
-  public ResetUseCase(Image image) {
-
+  private Image original;
+  
+  public void setOriginal(Image image) {
+    this.original = new Image(image);
   }
-
+  
+  @Override
   public void execute() {
-
-  }
-
-  public String getName() {
-    return "Reset";
+    AppViewContext.imageView.updateImage(original);
   }
 
 }

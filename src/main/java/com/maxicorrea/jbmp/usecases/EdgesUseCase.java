@@ -1,24 +1,30 @@
 package com.maxicorrea.jbmp.usecases;
 
 import com.maxicorrea.jbmp.domain.Image;
+import com.maxicorrea.jbmp.domain.Pixel;
+import com.maxicorrea.jbmp.presentation.AppViewContext;
 
 public class EdgesUseCase implements UseCase {
 
-  public EdgesUseCase(Image image) {
-    // TODO Auto-generated constructor stub
-  }
-
+  @Override
   public void execute() {
-    /*
-     * Image result = new Image(origin.getSize()); final int ROWS = result.getSize().getHeight();
-     * final int COLS = result.getSize().getWidth(); for (int currRow = 0; currRow < ROWS;
-     * ++currRow) { for (int currCol = 0; currCol < COLS; ++currCol) { if (result.inLimit(currRow,
-     * currCol)) { result.setPixel(currRow, currCol, Pixel.BLACK); continue; } double sumX =
-     * extractMethod1(origin, currRow, currCol); double sumY = extractMethod2(origin, currRow,
-     * currCol); int val = (int) Math.sqrt(sumX * sumX + sumY * sumY); result.setPixel(currRow,
-     * currCol, new Pixel(val, val, val)); } }
-     */
-
+    Image image = AppViewContext.imageView.getImage();
+    Image result = new Image(image.getSize());
+    final int ROWS = result.getSize().getHeight();
+    final int COLS = result.getSize().getWidth();
+    for (int currRow = 0; currRow < ROWS; ++currRow) {
+      for (int currCol = 0; currCol < COLS; ++currCol) {
+        if (result.inLimit(currRow, currCol)) {
+          result.setPixel(currRow, currCol, Pixel.BLACK);
+          continue;
+        }
+        double sumX = extractMethod1(image, currRow, currCol);
+        double sumY = extractMethod2(image, currRow, currCol);
+        int val = (int) Math.sqrt(sumX * sumX + sumY * sumY);
+        result.setPixel(currRow, currCol, new Pixel(val, val, val));
+      }
+    }
+    AppViewContext.imageView.updateImage(result);
   }
 
   static int[][] kernelX = {{-1, 0, 1}, {-2, 0, 2}, {-1, 0, 1}};
@@ -47,10 +53,6 @@ public class EdgesUseCase implements UseCase {
         + origin.getPixel(currRow + 1, currCol - 1).getRed() * kernelX[2][0]
         + origin.getPixel(currRow + 1, currCol).getRed() * kernelX[2][1]
         + origin.getPixel(currRow + 1, currCol + 1).getRed() * kernelX[2][2];
-  }
-
-  public String getName() {
-    return "Edges";
   }
 
 }

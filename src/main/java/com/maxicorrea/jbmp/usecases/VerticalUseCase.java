@@ -1,26 +1,22 @@
 package com.maxicorrea.jbmp.usecases;
 
 import com.maxicorrea.jbmp.domain.Image;
+import com.maxicorrea.jbmp.domain.Pixel;
+import com.maxicorrea.jbmp.presentation.AppViewContext;
 
 public class VerticalUseCase implements UseCase {
 
-
-  public VerticalUseCase(Image image) {
-
-  }
-
-
+  @Override
   public void execute() {
-    /*
-     * for (int col = 0; col < request.height; ++col) { for (int row = 0; row < request.width;
-     * ++row) { Pixel pixel = image.getPixel(row, col); image.setPixel(request.width - 1 - row, col,
-     * pixel); } } ViewContext.imageView.updateImage(image);
-     */
-  }
-
-
-  public String getName() {
-    return "Vertical";
+    Image image = AppViewContext.imageView.getImage();
+    Image result = new Image(image.getSize());
+    for (int i = 0; i < result.getSize().getWidth(); ++i) {
+      for (int j = 0; j < result.getSize().getHeight(); ++j) {
+        Pixel pixel = image.getPixel(j, i);
+        result.setPixel(result.getSize().getHeight() - 1 - j, i, pixel);
+      }
+    }
+    AppViewContext.imageView.updateImage(result);
   }
 
 }

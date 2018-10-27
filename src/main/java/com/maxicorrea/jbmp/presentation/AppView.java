@@ -8,4 +8,8 @@ public interface AppView {
 
   File getSaveFile();
 
+  void showMessage(String string);
+
+  void showError(String string);
+
 }

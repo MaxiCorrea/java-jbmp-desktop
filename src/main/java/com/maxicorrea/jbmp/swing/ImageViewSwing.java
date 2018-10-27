@@ -103,8 +103,11 @@ public class ImageViewSwing extends JPanel implements ImageView {
     return imgLabel;
   }
 
+  private Image image;
+  
   @Override
   public void updateImage(Image image) {
+    this.image = image;
     final BufferedImage bufferedImage =
         new BufferedImage(image.getSize().getWidth(), image.getSize().getHeight(), TYPE_INT_ARGB);
     for (int row = 0; row < image.getSize().getHeight(); ++row) {
@@ -116,6 +119,11 @@ public class ImageViewSwing extends JPanel implements ImageView {
       }
     }
     imgLabel.setIcon(new ImageIcon(bufferedImage));
+  }
+
+  @Override
+  public Image getImage() {
+    return image;
   }
 
 }

@@ -1,23 +1,23 @@
 package com.maxicorrea.jbmp.usecases;
 
+import static com.maxicorrea.jbmp.domain.Size.invert;
 import com.maxicorrea.jbmp.domain.Image;
+import com.maxicorrea.jbmp.domain.Pixel;
+import com.maxicorrea.jbmp.presentation.AppViewContext;
 
 public class RightUseCase implements UseCase {
 
-
-  public RightUseCase(Image image) {}
-
+  @Override
   public void execute() {
-    /*
-     * image = new Image(new Size(request.width, request.height)); for (int row = 0; row <
-     * request.width; ++row) { for (int col = 0; col < request.height; ++col) { DataPixelRequest dpx
-     * = request.pixels[request.height - 1 - col][row]; Pixel pixel = new Pixel(dpx.red, dpx.green,
-     * dpx.blue); image.setPixel(row, col, pixel); } } ViewContext.imageView.updateImage(image);
-     */
-  }
-
-  public String getName() {
-    return "Right";
+    Image image = AppViewContext.imageView.getImage();
+    Image result = new Image(invert(image.getSize()));
+    for (int i = 0; i < image.getSize().getWidth(); ++i) {
+      for (int j = 0; j < image.getSize().getHeight(); ++j) {
+        Pixel pixel = image.getPixel(image.getSize().getHeight() - 1 - j, i);
+        result.setPixel(i, j, pixel);
+      }
+    }
+    AppViewContext.imageView.updateImage(result);
   }
 
 }
