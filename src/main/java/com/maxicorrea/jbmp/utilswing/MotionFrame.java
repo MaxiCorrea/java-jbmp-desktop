@@ -33,6 +33,7 @@ public class MotionFrame extends JLabel {
     setForeground(Color.WHITE);
     setLayout(new FlowLayout(FlowLayout.RIGHT));
     add(getLabelQuestion());
+    add(new JLabel(" "));
     add(getLabelMini());
     add(getLabelClose());
     setPreferredSize(new Dimension(990, 40));
@@ -94,7 +95,7 @@ public class MotionFrame extends JLabel {
   }
 
   public JLabel getLabelQuestion() {
-    if(ques ==  null) {
+    if (ques == null) {
       ques = new JLabel();
       ques.setIcon(QUES_ICON);
       ques.addMouseListener(new MouseAdapter() {
@@ -106,7 +107,7 @@ public class MotionFrame extends JLabel {
     }
     return ques;
   }
-  
+
   public void iconifiedFrame() {
     mainFrame.setState(JFrame.ICONIFIED);
   }
