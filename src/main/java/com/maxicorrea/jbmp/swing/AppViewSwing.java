@@ -12,13 +12,16 @@ import static com.maxicorrea.jbmp.utilswing.IconLocations.ROTATE_RIGHT_ICON;
 import static com.maxicorrea.jbmp.utilswing.IconLocations.SAVE_ICON;
 import static com.maxicorrea.jbmp.utilswing.IconLocations.VERTICAL_ICON;
 import static com.maxicorrea.jbmp.utilswing.TextLabels.APP_TITLE;
+import static com.maxicorrea.jbmp.utilswing.TextLabels.BLUE_TEXT;
 import static com.maxicorrea.jbmp.utilswing.TextLabels.BLUR_TEXT;
 import static com.maxicorrea.jbmp.utilswing.TextLabels.EDGES_TEXT;
 import static com.maxicorrea.jbmp.utilswing.TextLabels.GRAYSCALE_TEXT;
+import static com.maxicorrea.jbmp.utilswing.TextLabels.GREEN_TEXT;
 import static com.maxicorrea.jbmp.utilswing.TextLabels.HORIZONTAL_TEXT;
 import static com.maxicorrea.jbmp.utilswing.TextLabels.LEFT_TEXT;
 import static com.maxicorrea.jbmp.utilswing.TextLabels.NEGATIVE_TEXT;
 import static com.maxicorrea.jbmp.utilswing.TextLabels.OPEN_TEXT;
+import static com.maxicorrea.jbmp.utilswing.TextLabels.RED_TEXT;
 import static com.maxicorrea.jbmp.utilswing.TextLabels.RESET_TEXT;
 import static com.maxicorrea.jbmp.utilswing.TextLabels.RIGHT_TEXT;
 import static com.maxicorrea.jbmp.utilswing.TextLabels.SAVE_TEXT;
@@ -68,6 +71,10 @@ public class AppViewSwing implements AppView {
   private OperationViewSwing sepia;
   private OperationViewSwing blur;
   private OperationViewSwing edges;
+  private OperationViewSwing red;
+  private OperationViewSwing green;
+  private OperationViewSwing blue;
+  
 
   private Item flips;
   private OperationViewSwing vertical;
@@ -134,6 +141,9 @@ public class AppViewSwing implements AppView {
       filters.addSubItem(sepia = createSubItem(SEPIA_TEXT, FILTER_ICON));
       filters.addSubItem(blur = createSubItem(BLUR_TEXT, FILTER_ICON));
       filters.addSubItem(edges = createSubItem(EDGES_TEXT, FILTER_ICON));
+      filters.addSubItem(red = createSubItem(RED_TEXT, FILTER_ICON));
+      filters.addSubItem(green = createSubItem(GREEN_TEXT, FILTER_ICON));
+      filters.addSubItem(blue = createSubItem(BLUE_TEXT, FILTER_ICON));
     }
     return filters;
   }
@@ -179,6 +189,9 @@ public class AppViewSwing implements AppView {
     horizontal.setUseCase(AppUseCasesContext.applyHorizontalUseCase);
     right.setUseCase(AppUseCasesContext.applyRightUseCase);
     left.setUseCase(AppUseCasesContext.applyLeftUseCase);
+    red.setUseCase(AppUseCasesContext.applyRedUseCase);
+    green.setUseCase(AppUseCasesContext.applyGreenUseCase);
+    blue.setUseCase(AppUseCasesContext.applyBlueUseCase);
   }
 
   @Override

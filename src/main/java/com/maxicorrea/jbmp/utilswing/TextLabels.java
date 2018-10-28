@@ -14,6 +14,9 @@ public class TextLabels {
   public static final String NEGATIVE_TEXT = "negative      ";
   public static final String BLUR_TEXT = "blur              ";
   public static final String EDGES_TEXT = "edges            ";
+  public static final String RED_TEXT = "red            ";
+  public static final String GREEN_TEXT = "green            ";
+  public static final String BLUE_TEXT = "blue            ";
 
   public static final String TITLE_FLIP = " Flips";
   public static final String VERTICAL_TEXT = "vertical        ";

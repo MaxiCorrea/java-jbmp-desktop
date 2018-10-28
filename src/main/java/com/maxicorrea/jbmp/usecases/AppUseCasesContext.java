@@ -5,11 +5,17 @@ public class AppUseCasesContext {
   public static UseCase applyBlurUseCase;
 
   public static UseCase applyEdgesUseCase;
-
+  
   public static UseCase applyGrayscaleUseCase;
 
   public static UseCase applyHorizontalUseCase;
-
+  
+  public static UseCase applyRedUseCase;
+  
+  public static UseCase applyGreenUseCase;
+  
+  public static UseCase applyBlueUseCase;
+  
   public static UseCase applyLeftUseCase;
 
   public static UseCase applyNegativeUseCase;
@@ -31,6 +37,9 @@ public class AppUseCasesContext {
     applyEdgesUseCase = new EdgesUseCase();
     applyGrayscaleUseCase = new GrayscaleUseCase();
     applyHorizontalUseCase = new HorizontalUseCase();
+    applyRedUseCase = new RedUseCase();
+    applyGreenUseCase = new GreenUseCase();
+    applyBlueUseCase = new BlueUseCase();
     applyLeftUseCase = new LeftUseCase();
     applyNegativeUseCase = new NegativeUseCase();
     applyResetUseCase = new ResetUseCase();
