@@ -96,12 +96,11 @@ public class MotionFrame extends JLabel {
   public JLabel getLabelQuestion() {
     if(ques ==  null) {
       ques = new JLabel();
-      ques.setToolTipText("About");
       ques.setIcon(QUES_ICON);
       ques.addMouseListener(new MouseAdapter() {
         @Override
         public void mousePressed(MouseEvent e) {
-          Dialog.showAboutDialog(mainFrame);
+          // Dialog.showAboutDialog(mainFrame);
         }
       });
     }

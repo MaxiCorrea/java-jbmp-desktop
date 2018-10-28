@@ -23,7 +23,7 @@ public class Application {
       new AppUseCasesContext();
       view.initializeViews();
       view.initializeUseCases();
-      view.show();
+      view.open();
     });
   }
 

@@ -5,11 +5,14 @@ import com.maxicorrea.jbmp.domain.Image;
 import com.maxicorrea.jbmp.domain.Pixel;
 import com.maxicorrea.jbmp.presentation.AppViewContext;
 
-public class LeftUseCase implements UseCase {
+public class LeftUseCase extends AbstractUseCase {
 
   @Override
   public void execute() {
     Image image = AppViewContext.imageView.getImage();
+    if (!checkPrecondition(image)) {
+      return;
+    }
     Image result = new Image(invert(image.getSize()));
     for (int i = 0; i < result.getSize().getHeight(); ++i) {
       for (int j = 0; j < result.getSize().getWidth(); ++j) {
@@ -19,5 +22,4 @@ public class LeftUseCase implements UseCase {
     }
     AppViewContext.imageView.updateImage(result);
   }
-
 }

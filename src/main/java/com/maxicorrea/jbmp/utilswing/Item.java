@@ -23,13 +23,14 @@ public class Item extends JPanel {
     titleItem.addMouseListener(new MouseAdapter() {
       @Override
       public void mousePressed(MouseEvent e) {
-        if (titleItem.isPressed()) {
+        if (titleItem.pressed()) {
           pressedAction(titleItem);
         } else {
           notPressedAction(titleItem);
         }
       }
     });
+    
   }
 
   public void pressedAction(TitleItem titleItem) {

@@ -10,7 +10,6 @@ import com.maxicorrea.jbmp.presentation.AppViewContext;
 public class OpenImageUseCase implements UseCase {
 
   public void execute() {
-
     try {
       File file = AppViewContext.appView.getOpenFile();
       if (file != null && file.exists()) {
@@ -19,8 +18,7 @@ public class OpenImageUseCase implements UseCase {
         AppViewContext.imageView.updateImage(image);
       }
     } catch (BmpInputException e) {
-      e.printStackTrace();
+      AppViewContext.appView.showError(e.getMessage());
     }
   }
-
 }

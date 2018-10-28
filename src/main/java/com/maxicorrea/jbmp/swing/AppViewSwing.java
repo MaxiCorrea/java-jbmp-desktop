@@ -45,6 +45,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import com.maxicorrea.jbmp.presentation.AppView;
 import com.maxicorrea.jbmp.presentation.AppViewContext;
 import com.maxicorrea.jbmp.usecases.AppUseCasesContext;
+import com.maxicorrea.jbmp.utilswing.Dialog;
 import com.maxicorrea.jbmp.utilswing.Item;
 import com.maxicorrea.jbmp.utilswing.MotionFrame;
 import com.maxicorrea.jbmp.utilswing.TitleItem;
@@ -84,7 +85,6 @@ public class AppViewSwing implements AppView {
     mainFrame.setIconImage(getDefaultToolkit().getImage(getClass().getResource(FAVICON_ICON)));
     mainFrame.setUndecorated(true);
     mainFrame.setContentPane(getContentPane());
-    mainFrame.setLocationRelativeTo(null);
   }
 
   private JPanel getContentPane() {
@@ -116,7 +116,7 @@ public class AppViewSwing implements AppView {
     return pane;
   }
 
-  public Item getEssentialItems() {
+  Item getEssentialItems() {
     if (essentials == null) {
       essentials = new Item(new TitleItem(TITLE_ESSENTIAL));
       essentials.addSubItem(open = createSubItem(OPEN_TEXT, OPEN_ICON));
@@ -126,7 +126,7 @@ public class AppViewSwing implements AppView {
     return essentials;
   }
 
-  public Item getFilterItems() {
+  Item getFilterItems() {
     if (filters == null) {
       filters = new Item(new TitleItem(TITLE_FILTER));
       filters.addSubItem(grayscale = createSubItem(GRAYSCALE_TEXT, FILTER_ICON));
@@ -138,7 +138,7 @@ public class AppViewSwing implements AppView {
     return filters;
   }
 
-  public Item getFlipItems() {
+  Item getFlipItems() {
     if (flips == null) {
       flips = new Item(new TitleItem(TITLE_FLIP));
       flips.addSubItem(vertical = createSubItem(VERTICAL_TEXT, VERTICAL_ICON));
@@ -181,28 +181,8 @@ public class AppViewSwing implements AppView {
     left.setUseCase(AppUseCasesContext.applyLeftUseCase);
   }
 
-  public void show() {
-    mainFrame.setVisible(true);
-  }
-
-  public void showMessage(String message) {
-    imageView.showMessage(message);
-  }
-
-  public void showErrorMessage(String errMessage) {
-    imageView.showErrorMessage(errMessage);
-  }
-
-  public ImageViewSwing getImageView() {
-    return imageView;
-  }
-
   @Override
   public File getOpenFile() {
-    return showOpenChooser();
-  }
-
-  private File showOpenChooser() {
     JFileChooser chooser = new JFileChooser();
     chooser.setFileFilter(new FileNameExtensionFilter("imagen BMP", "bmp"));
     if (chooser.showOpenDialog(mainFrame) == 0) {
@@ -210,13 +190,9 @@ public class AppViewSwing implements AppView {
     }
     return null;
   }
-  
+
   @Override
   public File getSaveFile() {
-    return showSaveChooser();
-  }
-
-  private File showSaveChooser() {
     JFileChooser chooser = new JFileChooser();
     chooser.setFileFilter(new FileNameExtensionFilter("imagen BMP", "bmp"));
     if (chooser.showSaveDialog(mainFrame) == 0) {
@@ -226,9 +202,24 @@ public class AppViewSwing implements AppView {
   }
 
   @Override
-  public void showError(String string) {
-    // TODO Auto-generated method stub
-    
+  public void showMessage(String message) {
+    imageView.showMessage(message);
   }
-  
+
+  @Override
+  public void showError(String errMessage) {
+    imageView.showErrorMessage(errMessage);
+  }
+
+  @Override
+  public void open() {
+    mainFrame.setLocationRelativeTo(null);
+    mainFrame.setVisible(true);
+  }
+
+  @Override
+  public void showAlert(String message) {
+    Dialog.showAlertDialog(mainFrame, message);
+  }
+
 }

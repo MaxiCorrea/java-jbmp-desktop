@@ -10,24 +10,20 @@ import javax.swing.JPanel;
 public class SubItem extends JPanel {
 
   private static final long serialVersionUID = 1L;
-  private static final String EMPTY = "";
+
   private JButton button;
 
   public SubItem(String text, String icon) {
-    this(text, icon, EMPTY);
-  }
-
-  public SubItem(String text, String icon, String command) {
     button = new JButton(text);
     setBackground(BACKGROUND_COLOR);
     button.setPreferredSize(new Dimension(120, 25));
-    button.setActionCommand(command);
     button.setBackground(BACKGROUND_COLOR);
     button.setForeground(WHITE);
     button.setIcon(load(icon));
     button.setFocusPainted(false);
     button.setBorderPainted(false);
     add(button);
+    setVisible(false);
   }
 
   public JButton getButton() {

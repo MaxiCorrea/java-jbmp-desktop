@@ -5,14 +5,18 @@ import com.maxicorrea.jbmp.domain.Pixel;
 import com.maxicorrea.jbmp.domain.Size;
 import com.maxicorrea.jbmp.presentation.AppViewContext;
 
-public class BlurUseCase implements UseCase {
+public class BlurUseCase extends AbstractUseCase {
 
   static final int[] X_DIRECTIONS = {-1, 1, -1, 1, 0, 0, -1, 1};
   static final int[] Y_DIRECTIONS = {-1, 1, 1, -1, 1, -1, 0, 0};
   static final int NEIGHBORHOOD = 8;
 
+  @Override
   public void execute() {
     Image image = AppViewContext.imageView.getImage();
+    if(!checkPrecondition(image)) {
+      return;
+    }
     Image result = new Image(new Size(image.getSize().getHeight(), 
                                       image.getSize().getWidth()));
     for (int currentRow = 0; currentRow < image.getSize().getHeight(); ++currentRow) {

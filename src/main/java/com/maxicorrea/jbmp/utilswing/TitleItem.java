@@ -7,8 +7,8 @@ import static com.maxicorrea.jbmp.utilswing.IconLocations.ARROW_UP_ICON;
 import static java.awt.BorderLayout.EAST;
 import static java.awt.BorderLayout.SOUTH;
 import static java.awt.BorderLayout.WEST;
+import static java.awt.Color.WHITE;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.MouseListener;
 import javax.swing.Icon;
@@ -23,13 +23,13 @@ public class TitleItem extends JPanel {
 
   private JLabel titleLabel;
   private JLabel arrowLabel;
-  private boolean isPressed = true;
+  private boolean isPressed;
 
   public TitleItem(String title) {
     titleLabel = new JLabel(title);
-    titleLabel.setForeground(Color.white);
+    titleLabel.setForeground(WHITE);
     arrowLabel = new JLabel();
-    arrowLabel.setIcon(ARROW_UP);
+    arrowLabel.setIcon(ARROW_DOWN);
     setBackground(BACKGROUND_COLOR);
     titleLabel.setBackground(BACKGROUND_COLOR);
     setLayout(new BorderLayout());
@@ -55,7 +55,7 @@ public class TitleItem extends JPanel {
     arrowLabel.addMouseListener(listener);
   }
 
-  public boolean isPressed() {
+  public boolean pressed() {
     isPressed = !isPressed;
     return isPressed;
   }

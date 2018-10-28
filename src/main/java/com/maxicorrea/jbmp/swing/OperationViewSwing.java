@@ -11,7 +11,7 @@ public class OperationViewSwing extends SubItem implements OperationView {
     return new OperationViewSwing(text, icon);
   }
 
-  public OperationViewSwing(String text, String icon) {
+  OperationViewSwing(String text, String icon) {
     super(text, icon);
   }
 

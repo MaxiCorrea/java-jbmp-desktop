@@ -4,11 +4,14 @@ import com.maxicorrea.jbmp.domain.Image;
 import com.maxicorrea.jbmp.domain.Pixel;
 import com.maxicorrea.jbmp.presentation.AppViewContext;
 
-public class VerticalUseCase implements UseCase {
+public class VerticalUseCase extends AbstractUseCase {
 
   @Override
   public void execute() {
     Image image = AppViewContext.imageView.getImage();
+    if (!checkPrecondition(image)) {
+      return;
+    }
     Image result = new Image(image.getSize());
     for (int i = 0; i < result.getSize().getWidth(); ++i) {
       for (int j = 0; j < result.getSize().getHeight(); ++j) {
@@ -18,5 +21,4 @@ public class VerticalUseCase implements UseCase {
     }
     AppViewContext.imageView.updateImage(result);
   }
-
 }

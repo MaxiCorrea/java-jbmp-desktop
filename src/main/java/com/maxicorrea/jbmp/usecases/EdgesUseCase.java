@@ -4,11 +4,14 @@ import com.maxicorrea.jbmp.domain.Image;
 import com.maxicorrea.jbmp.domain.Pixel;
 import com.maxicorrea.jbmp.presentation.AppViewContext;
 
-public class EdgesUseCase implements UseCase {
+public class EdgesUseCase extends AbstractUseCase {
 
   @Override
   public void execute() {
     Image image = AppViewContext.imageView.getImage();
+    if (!checkPrecondition(image)) {
+      return;
+    }
     Image result = new Image(image.getSize());
     final int ROWS = result.getSize().getHeight();
     final int COLS = result.getSize().getWidth();

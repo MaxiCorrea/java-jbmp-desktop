@@ -3,7 +3,7 @@ package com.maxicorrea.jbmp.usecases;
 import com.maxicorrea.jbmp.domain.Image;
 import com.maxicorrea.jbmp.presentation.AppViewContext;
 
-public class ResetUseCase implements UseCase {
+public class ResetUseCase extends AbstractUseCase {
 
   private Image original;
   
@@ -13,7 +13,9 @@ public class ResetUseCase implements UseCase {
   
   @Override
   public void execute() {
-    AppViewContext.imageView.updateImage(original);
+    if(checkPrecondition(original)) {
+      AppViewContext.imageView.updateImage(original);
+    }
   }
 
 }

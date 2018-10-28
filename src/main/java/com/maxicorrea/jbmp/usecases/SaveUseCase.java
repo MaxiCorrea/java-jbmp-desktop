@@ -6,20 +6,22 @@ import com.maxicorrea.jbmp.persistence.BmpOutputException;
 import com.maxicorrea.jbmp.persistence.ImageWriter;
 import com.maxicorrea.jbmp.presentation.AppViewContext;
 
-public class SaveUseCase implements UseCase {
+public class SaveUseCase extends AbstractUseCase {
 
   @Override
   public void execute() {
+    Image image = AppViewContext.imageView.getImage();
+    if (!checkPrecondition(image)) {
+      return;
+    }
     try {
       File file = AppViewContext.appView.getSaveFile();
       if (file != null) {
-        Image image = AppViewContext.imageView.getImage();
         ImageWriter imageWriter = new ImageWriter();
         imageWriter.write(image, file);
       }
     } catch (BmpOutputException ex) {
-      ex.printStackTrace();
+      AppViewContext.appView.showError(ex.getMessage());
     }
   }
-
 }

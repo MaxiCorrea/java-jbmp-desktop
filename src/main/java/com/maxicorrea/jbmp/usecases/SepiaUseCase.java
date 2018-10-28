@@ -4,10 +4,14 @@ import com.maxicorrea.jbmp.domain.Image;
 import com.maxicorrea.jbmp.domain.Pixel;
 import com.maxicorrea.jbmp.presentation.AppViewContext;
 
-public class SepiaUseCase implements UseCase {
+public class SepiaUseCase extends AbstractUseCase {
 
+  @Override
   public void execute() {
     Image image = AppViewContext.imageView.getImage();
+    if (!checkPrecondition(image)) {
+      return;
+    }
     Image result = new Image(image);
     for (int row = 0; row < image.getSize().getHeight(); ++row) {
       for (int col = 0; col < image.getSize().getWidth(); ++col) {
@@ -20,5 +24,4 @@ public class SepiaUseCase implements UseCase {
     }
     AppViewContext.imageView.updateImage(result);
   }
-
 }
