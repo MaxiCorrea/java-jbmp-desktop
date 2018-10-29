@@ -16,4 +16,4 @@ Simple editor de imagen en formato bmp.
   * Swing
   
 ### Screenshot  
-!
+
