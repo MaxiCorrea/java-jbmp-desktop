@@ -17,13 +17,17 @@ public class TextLabels {
   public static final String RED_TEXT = "red            ";
   public static final String GREEN_TEXT = "green            ";
   public static final String BLUE_TEXT = "blue            ";
-
+  public static final String ORGB_TEXT = "RGB             ";
+  public static final String CONTRAST_TEXT = "contrast        ";
+  public static final String GRID_TEXT = "grid            ";
+  
   public static final String TITLE_FLIP = " Flips";
   public static final String VERTICAL_TEXT = "vertical        ";
   public static final String HORIZONTAL_TEXT = "horizontal   ";
   public static final String LEFT_TEXT = "left               ";
   public static final String RIGHT_TEXT = "right             ";
-
+  
+ 
   private TextLabels() {
     throw new AssertionError("TextLabels is a utility class.");
   }

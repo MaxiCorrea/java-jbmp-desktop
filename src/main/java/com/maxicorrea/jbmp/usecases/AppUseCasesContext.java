@@ -16,6 +16,8 @@ public class AppUseCasesContext {
   
   public static UseCase applyBlueUseCase;
   
+  public static UseCase applyORGBUseCase;
+  
   public static UseCase applyLeftUseCase;
 
   public static UseCase applyNegativeUseCase;
@@ -32,6 +34,10 @@ public class AppUseCasesContext {
 
   public static UseCase saveImageUseCase;
 
+  public static UseCase applyConstrastUseCase;
+  
+  public static UseCase applyGridUseCase;
+  
   public AppUseCasesContext() {
     applyBlurUseCase = new BlurUseCase();
     applyEdgesUseCase = new EdgesUseCase();
@@ -45,9 +51,12 @@ public class AppUseCasesContext {
     applyResetUseCase = new ResetUseCase();
     applyRightUseCase = new RightUseCase();
     applySepiaUseCase = new SepiaUseCase();
+    applyGridUseCase = new GridUseCase();
+    applyORGBUseCase = new ORGBUseCase();
     applyVerticalUseCase = new VerticalUseCase();
     openImageUseCase = new OpenImageUseCase();
     saveImageUseCase = new SaveUseCase();
+    applyConstrastUseCase = new ContrastUseCase();
   }
 
 }

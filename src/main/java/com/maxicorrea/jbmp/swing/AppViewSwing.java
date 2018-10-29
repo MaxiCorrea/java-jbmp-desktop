@@ -14,6 +14,7 @@ import static com.maxicorrea.jbmp.utilswing.IconLocations.VERTICAL_ICON;
 import static com.maxicorrea.jbmp.utilswing.TextLabels.APP_TITLE;
 import static com.maxicorrea.jbmp.utilswing.TextLabels.BLUE_TEXT;
 import static com.maxicorrea.jbmp.utilswing.TextLabels.BLUR_TEXT;
+import static com.maxicorrea.jbmp.utilswing.TextLabels.CONTRAST_TEXT;
 import static com.maxicorrea.jbmp.utilswing.TextLabels.EDGES_TEXT;
 import static com.maxicorrea.jbmp.utilswing.TextLabels.GRAYSCALE_TEXT;
 import static com.maxicorrea.jbmp.utilswing.TextLabels.GREEN_TEXT;
@@ -21,6 +22,7 @@ import static com.maxicorrea.jbmp.utilswing.TextLabels.HORIZONTAL_TEXT;
 import static com.maxicorrea.jbmp.utilswing.TextLabels.LEFT_TEXT;
 import static com.maxicorrea.jbmp.utilswing.TextLabels.NEGATIVE_TEXT;
 import static com.maxicorrea.jbmp.utilswing.TextLabels.OPEN_TEXT;
+import static com.maxicorrea.jbmp.utilswing.TextLabels.ORGB_TEXT;
 import static com.maxicorrea.jbmp.utilswing.TextLabels.RED_TEXT;
 import static com.maxicorrea.jbmp.utilswing.TextLabels.RESET_TEXT;
 import static com.maxicorrea.jbmp.utilswing.TextLabels.RIGHT_TEXT;
@@ -51,6 +53,7 @@ import com.maxicorrea.jbmp.usecases.AppUseCasesContext;
 import com.maxicorrea.jbmp.utilswing.Dialog;
 import com.maxicorrea.jbmp.utilswing.Item;
 import com.maxicorrea.jbmp.utilswing.MotionFrame;
+import com.maxicorrea.jbmp.utilswing.TextLabels;
 import com.maxicorrea.jbmp.utilswing.TitleItem;
 
 public class AppViewSwing implements AppView {
@@ -67,6 +70,7 @@ public class AppViewSwing implements AppView {
 
   private Item filters;
   private OperationViewSwing grayscale;
+  private OperationViewSwing contrast;
   private OperationViewSwing negative;
   private OperationViewSwing sepia;
   private OperationViewSwing blur;
@@ -74,7 +78,8 @@ public class AppViewSwing implements AppView {
   private OperationViewSwing red;
   private OperationViewSwing green;
   private OperationViewSwing blue;
-  
+  private OperationViewSwing orgb;
+  private OperationViewSwing grid;
 
   private Item flips;
   private OperationViewSwing vertical;
@@ -137,6 +142,7 @@ public class AppViewSwing implements AppView {
     if (filters == null) {
       filters = new Item(new TitleItem(TITLE_FILTER));
       filters.addSubItem(grayscale = createSubItem(GRAYSCALE_TEXT, FILTER_ICON));
+      filters.addSubItem(contrast = createSubItem(CONTRAST_TEXT, FILTER_ICON));
       filters.addSubItem(negative = createSubItem(NEGATIVE_TEXT, FILTER_ICON));
       filters.addSubItem(sepia = createSubItem(SEPIA_TEXT, FILTER_ICON));
       filters.addSubItem(blur = createSubItem(BLUR_TEXT, FILTER_ICON));
@@ -144,6 +150,8 @@ public class AppViewSwing implements AppView {
       filters.addSubItem(red = createSubItem(RED_TEXT, FILTER_ICON));
       filters.addSubItem(green = createSubItem(GREEN_TEXT, FILTER_ICON));
       filters.addSubItem(blue = createSubItem(BLUE_TEXT, FILTER_ICON));
+      filters.addSubItem(orgb = createSubItem(ORGB_TEXT, FILTER_ICON));
+      filters.addSubItem(grid = createSubItem(TextLabels.GRID_TEXT, FILTER_ICON));
     }
     return filters;
   }
@@ -162,18 +170,6 @@ public class AppViewSwing implements AppView {
   public void initializeViews() {
     AppViewContext.appView = this;
     AppViewContext.imageView = imageView;
-    AppViewContext.openView = open;
-    AppViewContext.saveView = save;
-    AppViewContext.resetView = reset;
-    AppViewContext.grayScaleView = grayscale;
-    AppViewContext.nagativeView = negative;
-    AppViewContext.sepiaView = sepia;
-    AppViewContext.blurView = blur;
-    AppViewContext.edgesView = edges;
-    AppViewContext.verticalView = vertical;
-    AppViewContext.horizonalView = horizontal;
-    AppViewContext.rightView = right;
-    AppViewContext.leftView = left;
   }
 
   public void initializeUseCases() {
@@ -192,6 +188,9 @@ public class AppViewSwing implements AppView {
     red.setUseCase(AppUseCasesContext.applyRedUseCase);
     green.setUseCase(AppUseCasesContext.applyGreenUseCase);
     blue.setUseCase(AppUseCasesContext.applyBlueUseCase);
+    orgb.setUseCase(AppUseCasesContext.applyORGBUseCase);
+    contrast.setUseCase(AppUseCasesContext.applyConstrastUseCase);
+    grid.setUseCase(AppUseCasesContext.applyGridUseCase);
   }
 
   @Override

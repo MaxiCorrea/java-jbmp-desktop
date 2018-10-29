@@ -112,6 +112,9 @@ public class ImageViewSwing extends JPanel implements ImageView {
         new BufferedImage(image.getSize().getWidth(), image.getSize().getHeight(), TYPE_INT_ARGB);
     for (int row = 0; row < image.getSize().getHeight(); ++row) {
       for (int col = 0; col < image.getSize().getWidth(); ++col) {
+        if(image.getPixel(row, col) == null) {
+          continue;
+        }
         int r = image.getPixel(row, col).getRed();
         int g = image.getPixel(row, col).getGreen();
         int b = image.getPixel(row, col).getBlue();
