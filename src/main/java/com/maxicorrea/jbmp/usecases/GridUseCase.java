@@ -4,16 +4,11 @@ import static com.maxicorrea.jbmp.domain.Pixel.BLACK;
 import com.maxicorrea.jbmp.domain.Image;
 import com.maxicorrea.jbmp.domain.Pixel;
 import com.maxicorrea.jbmp.domain.Size;
-import com.maxicorrea.jbmp.presentation.AppViewContext;
 
 public class GridUseCase extends AbstractUseCase {
 
   @Override
-  public void execute() {
-    Image image = AppViewContext.imageView.getImage();
-    if (!checkPrecondition(image)) {
-      return;
-    }
+  Image applyAlgorithm(Image image) {
     int height = image.getSize().getHeight();
     int width = image.getSize().getWidth();
     Image result = new Image(image.getSize());
@@ -62,8 +57,7 @@ public class GridUseCase extends AbstractUseCase {
          }
       }
     }
-
-    AppViewContext.imageView.updateImage(result);
+    return result;
   }
 
   private static Image reduce(Image image, int sy, int sx) {
@@ -99,5 +93,4 @@ public class GridUseCase extends AbstractUseCase {
     return result;
   }
 
-  
 }

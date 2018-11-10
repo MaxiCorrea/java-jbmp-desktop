@@ -4,16 +4,11 @@ import static com.maxicorrea.jbmp.domain.Pixel.BLACK;
 import static java.lang.Math.sqrt;
 import com.maxicorrea.jbmp.domain.Image;
 import com.maxicorrea.jbmp.domain.Pixel;
-import com.maxicorrea.jbmp.presentation.AppViewContext;
 
 public class EdgesUseCase extends AbstractUseCase {
 
   @Override
-  public void execute() {
-    Image image = AppViewContext.imageView.getImage();
-    if (!checkPrecondition(image)) {
-      return;
-    }
+  Image applyAlgorithm(Image image) {
     Image result = new Image(image.getSize());
     final int ROWS = result.getSize().getHeight();
     final int COLS = result.getSize().getWidth();
@@ -29,9 +24,9 @@ public class EdgesUseCase extends AbstractUseCase {
         result.setPixel(row, col, new Pixel(val, val, val));
       }
     }
-    AppViewContext.imageView.updateImage(result);
+    return result;
   }
-
+  
   static int[][] kernelX = {{-1, 0, 1}, {-2, 0, 2}, {-1, 0, 1}};
 
   int extractMethod2(Image origin, int row, int col) {

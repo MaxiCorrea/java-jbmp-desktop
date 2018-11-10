@@ -1,7 +1,6 @@
 package com.maxicorrea.jbmp.usecases;
 
 import com.maxicorrea.jbmp.domain.Image;
-import com.maxicorrea.jbmp.presentation.AppViewContext;
 
 public class ResetUseCase extends AbstractUseCase {
 
@@ -12,10 +11,8 @@ public class ResetUseCase extends AbstractUseCase {
   }
   
   @Override
-  public void execute() {
-    if(checkPrecondition(original)) {
-      AppViewContext.imageView.updateImage(original);
-    }
+  Image applyAlgorithm(Image currentImage) {
+    return original;
   }
 
 }

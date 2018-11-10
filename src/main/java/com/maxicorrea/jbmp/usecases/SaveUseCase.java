@@ -8,20 +8,26 @@ import com.maxicorrea.jbmp.presentation.AppViewContext;
 
 public class SaveUseCase extends AbstractUseCase {
 
+  private final ImageWriter writer;
+
+  public SaveUseCase() {
+    this(new ImageWriter());
+  }
+
+  public SaveUseCase(ImageWriter writer) {
+    this.writer = writer;
+  }
+
   @Override
-  public void execute() {
-    Image image = AppViewContext.imageView.getImage();
-    if (!checkPrecondition(image)) {
-      return;
-    }
+  Image applyAlgorithm(Image image) {
     try {
       File file = AppViewContext.appView.getSaveFile();
       if (file != null) {
-        ImageWriter imageWriter = new ImageWriter();
-        imageWriter.write(image, file);
+        writer.write(image, file);
       }
     } catch (BmpOutputException ex) {
       AppViewContext.appView.showError(ex.getMessage());
     }
+    return image;
   }
 }

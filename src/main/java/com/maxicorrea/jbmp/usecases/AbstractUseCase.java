@@ -5,12 +5,17 @@ import com.maxicorrea.jbmp.presentation.AppViewContext;
 
 abstract class AbstractUseCase implements UseCase {
 
-  boolean checkPrecondition(Image image) {
-    if (image == null) {
+  @Override
+  public void execute() {
+    Image currentImage = AppViewContext.imageView.getImage();
+    if(currentImage != null) {
+      Image result = applyAlgorithm(currentImage);
+      AppViewContext.imageView.updateImage(result);
+    } else {
       AppViewContext.appView.showAlert("No image");
-      return false;
     }
-    return true;
   }
-
+  
+  abstract Image applyAlgorithm(Image currentImage);
+  
 }
