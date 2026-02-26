@@ -15,12 +15,13 @@
 		<project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>${encoding}</project.reporting.outputEncoding>
 		<project.resources.sourceEncoding>${encoding}</project.resources.sourceEncoding>
-		<jdk.version>1.8</jdk.version>
-		<maven.compiler.version>3.5</maven.compiler.version>
-		<maven.failsafe.version>2.19.1</maven.failsafe.version>
+		<jdk.version>11</jdk.version>
+		<maven.compiler.version>3.11.0</maven.compiler.version>
+		<maven.failsafe.version>3.1.2</maven.failsafe.version>
+		<maven.surefire.version>3.1.2</maven.surefire.version>
 		<junit.version>4.13.1</junit.version>
 		<junitparams.version>1.0.2</junitparams.version>
-		<mockito.version>1.0.3</mockito.version>
+		<mockito.version>4.11.0</mockito.version>
 	</properties>
 
 	<profiles>
@@ -58,16 +59,19 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>${junit.version}</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>pl.pragmatists</groupId>
 			<artifactId>JUnitParams</artifactId>
 			<version>${junitparams.version}</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.testifyproject.mock</groupId>
-			<artifactId>mockito</artifactId>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
 			<version>${mockito.version}</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 	<build>
@@ -83,9 +87,13 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>${maven.compiler.version}</version>
 				<configuration>
-					<source>${jdk.version}</source>
-					<target>${jdk.version}</target>
+					<release>${jdk.version}</release>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${maven.surefire.version}</version>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

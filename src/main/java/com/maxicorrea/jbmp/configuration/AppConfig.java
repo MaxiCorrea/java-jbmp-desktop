@@ -20,6 +20,7 @@ public class AppConfig {
       for (Object key : properties.keySet()) {
         URL.put((String) key, properties.getProperty((String) key));
       }
+      
     } catch (IOException e) {
       System.exit(-1);
     }
